@@ -42,6 +42,49 @@ const technologies = [
   },
 ];
 
+const internWorks = [
+  {
+    title: "Sign Up Form",
+    description: "A sign up form with validation.",
+    image: "/intern-works/1.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/sign-up-form",
+  },
+  {
+    title: "Three Column Card",
+    description: "A three column card.",
+    image: "/intern-works/2.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/three-column-card",
+  },
+
+  {
+    title: "Results Summary",
+    description: "A results summary.",
+    image: "/intern-works/3.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/results-summary",
+  },
+];
+
+const juniorWorks = [
+  {
+    title: "Oceanland Clone",
+    description: "A NFT marketplace clone named Oceanland.",
+    image: "/junior-works/1.png",
+    href: "https://aliblackeye-oceanland-clone.netlify.app/",
+  },
+  {
+    title: "Age Calculator",
+    description: "A simple age calculator.",
+    image: "/junior-works/2.png",
+    href: "https://alikaragoz-projects.vercel.app/junior/age-calculator",
+  },
+  {
+    title: "News Page",
+    description: "A news page.",
+    image: "/junior-works/3.png",
+    href: "https://alikaragoz-projects.vercel.app/junior/news-page",
+  },
+];
+
 export default function Home() {
   return (
     <div className="home-page">
@@ -105,17 +148,19 @@ export default function Home() {
       </Swiper> 
       */}
 
-      <Works
+      {/*       <Works
         title="Mid Works"
         href="/works/mid"
-      />
+      /> */}
       <Works
         title="Junior Works"
+        workItems={juniorWorks}
         href="/works/junior"
       />
       <Works
         title="Intern Works"
         href="/works/intern"
+        workItems={internWorks}
       />
     </div>
   );

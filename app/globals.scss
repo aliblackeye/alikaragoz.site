@@ -77,13 +77,22 @@ li {
 
   gap: 8px;
   display: flex;
+  max-height: 312px;
+  height: 100%;
+
+  .description {
+
+    @media (min-width: 768px) {
+      max-width: 200px;
+
+    }
+  }
 
   @media (min-width: 768px) {
     flex-direction: column;
   }
 
   .image {
-
     img {
       /* rounded-xl !w-[96px] !h-[96px] md:!w-[200px] md:!h-[200px] */
 

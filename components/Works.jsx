@@ -75,6 +75,7 @@ export default function Works({
             <Link
               href={workItem.href}
               className="work-item"
+              target="_blank"
             >
               <div
                 className="gradient-hover 
