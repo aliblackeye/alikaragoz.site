@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function WorkItem({project}) {
+export default function WorkItem({ project }) {
   return (
     <motion.div
       variants={{

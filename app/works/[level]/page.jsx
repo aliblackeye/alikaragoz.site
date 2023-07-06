@@ -112,7 +112,22 @@ export default function WorkPage({ params }) {
         </Link>
       </div>
 
-      <div className="work-list">
+      <motion.div
+        variants={{
+          hidden: { opacity: 1, scale: 0 },
+          visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+              staggerChildren: 0.2,
+              bounce: 0.5,
+            },
+          },
+        }}
+        initial="hidden"
+        animate="visible"
+        className="works-list"
+      >
         {level === "intern" &&
           internProjects.map((project, index) => (
             <WorkItem
@@ -143,7 +158,7 @@ export default function WorkPage({ params }) {
               />
             )
           )}
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
