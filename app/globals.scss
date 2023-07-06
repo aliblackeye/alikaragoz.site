@@ -337,6 +337,11 @@ li {
   flex-direction: column;
   gap: 10px;
   margin-top: 24px;
+
+  @media (min-width: 768px) {
+    margin-top: 64px;
+  }
+    
   .works-header {
     padding-inline: 16px;
 
