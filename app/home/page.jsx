@@ -8,6 +8,8 @@ import { Autoplay } from "swiper/modules"; */
 // Components
 import Works from "@/components/Works";
 
+import { motion } from "framer-motion";
+
 const technologies = [
   {
     name: "React",
@@ -87,7 +89,11 @@ const juniorWorks = [
 
 export default function Home() {
   return (
-    <div className="home-page">
+    <motion.div
+      initial={{ opacity: 0, translateY: 20 }}
+      animate={{ opacity: 1, translateY: 0 }}
+      className="home-page"
+    >
       <div className="profile-wrapper">
         <div className="profile-wrapper-top">
           <Image
@@ -152,6 +158,12 @@ export default function Home() {
         title="Mid Works"
         href="/works/mid"
       /> */}
+      
+      <Works
+        title="Mid Works"
+        workItems={juniorWorks}
+        href="/works/mid"
+      />
       <Works
         title="Junior Works"
         workItems={juniorWorks}
@@ -162,6 +174,6 @@ export default function Home() {
         href="/works/intern"
         workItems={internWorks}
       />
-    </div>
+    </motion.div>
   );
 }

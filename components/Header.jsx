@@ -19,20 +19,13 @@ const links = [
     label: "home",
   },
   {
-    href: "/work",
-    label: "work",
+    href: "/works/all",
+    label: "works",
   },
-  {
-    href: "/story",
-    label: "story",
-  },
+
   {
     href: "/about",
     label: "about",
-  },
-  {
-    href: "/links",
-    label: "links",
   },
 ];
 
@@ -94,7 +87,7 @@ export default function Header() {
 
   return (
     <header>
-      <nav className="navbar flex relative justify-end md:!opacity-100 md:!visible  md:justify-between items-start md:items-center text-white bg-white/5 drop-shadow-md border border-zinc-900 rounded-xl p-3 mb-16">
+      <nav className="navbar flex relative justify-end md:!opacity-100 md:!visible  md:justify-between items-start md:items-center text-white drop-shadow-md border border-zinc-900 rounded-xl p-3 mb-16">
         <div className="header-left gap-6 md:!opacity-100 md:!visible !hidden md:!flex md:!justify-start">
           {links.map((link, index) => (
             <Link
