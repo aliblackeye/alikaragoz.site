@@ -81,7 +81,7 @@ export default function Header() {
   };
 
   useEffect(() => {
-    const storageTheme = JSON.parse(localStorage.getItem("theme"));
+    const storageTheme = localStorage.getItem("theme");
     setTheme(storageTheme);
   }, []);
 

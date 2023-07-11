@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function ClientLayout({ children }) {
   useEffect(() => {
-    const theme = JSON.parse(localStorage.getItem("theme"));
+    const theme = localStorage.getItem("theme");
 
     if (theme) {
       document.documentElement.classList.add(theme);
