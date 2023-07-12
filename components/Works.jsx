@@ -61,7 +61,7 @@ export default function Works({
         animate="visible"
         className="works-list"
       >
-        {workItems.map((workItem) => (
+        {workItems.slice(0,3).map((workItem) => (
           <motion.div
             key={workItem}
             variants={{

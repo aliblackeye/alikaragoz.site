@@ -26,6 +26,24 @@ export default function WorkPage({ params }) {
 
   const juniorProjects = [
     {
+      title: "Alypto Blockchain",
+      description: "Alypto Blockchain website.",
+      image: "/junior-works/alypto-blockchain.png",
+      href: "https://alypto.netlify.app/",
+    },
+    {
+      title: "Online XOX",
+      description: "An online XOX game. Also you can play offline.",
+      image: "/junior-works/online-xox.png",
+      href: "https://aliblackeye-xox.netlify.app/",
+    },
+    {
+      title: "Realtime Chat App",
+      description: "A realtime chat app. Chat with your friends!",
+      image: "/junior-works/realtime-chat-app.png",
+      href: "https://aliblackeye-chat.netlify.app/",
+    },
+    {
       title: "Oceanland Clone",
       description: "A NFT marketplace clone named Oceanland.",
       image: "/junior-works/oceanland-clone.png",
@@ -49,7 +67,15 @@ export default function WorkPage({ params }) {
       image: "/junior-works/hcaptcha.png",
       href: "https://alikaragoz-projects.vercel.app/junior/hcaptcha",
     },
+    {
+      title: "Restaurant App",
+      description: "A responsive restaurant app. See the menu!",
+      image: "/junior-works/restaurant-app.png",
+      href: "https://aliblackeye-restaurant.netlify.app/",
+    },
+    
   ];
+  
 
   const internProjects = [
     {

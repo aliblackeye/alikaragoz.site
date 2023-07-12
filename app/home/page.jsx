@@ -43,49 +43,195 @@ const technologies = [
     link: "https://www.mongodb.com/",
   },
 ];
-
-const internWorks = [
+const midProjects = [
   {
-    title: "Sign Up Form",
-    description: "A sign up form with validation.",
-    image: "/intern-works/1.png",
-    href: "https://alikaragoz-projects.vercel.app/intern/sign-up-form",
+    title: "Fake For Me",
+    description: "JsonGPT supported fake data generator.",
+    image: "/mid-works/fake-for-me.png",
+    href: "https://fakefor.me/",
   },
   {
-    title: "Three Column Card",
-    description: "A three column card.",
-    image: "/intern-works/2.png",
-    href: "https://alikaragoz-projects.vercel.app/intern/three-column-card",
-  },
-
-  {
-    title: "Results Summary",
-    description: "A results summary.",
-    image: "/intern-works/3.png",
-    href: "https://alikaragoz-projects.vercel.app/intern/results-summary",
+    title: "Digital Hive",
+    description: "My startup company website.",
+    image: "/mid-works/startup.png",
+    href: "https://hive-digital.vercel.app/",
   },
 ];
 
-const juniorWorks = [
+const juniorProjects = [
+  {
+    title: "Alypto Blockchain",
+    description: "Alypto Blockchain website.",
+    image: "/junior-works/alypto-blockchain.png",
+    href: "https://alypto.netlify.app/",
+  },
+  {
+    title: "Online XOX",
+    description: "An online XOX game. Also you can play offline.",
+    image: "/junior-works/online-xox.png",
+    href: "https://aliblackeye-xox.netlify.app/",
+  },
+  {
+    title: "Realtime Chat App",
+    description: "A realtime chat app. Chat with your friends!",
+    image: "/junior-works/realtime-chat-app.png",
+    href: "https://aliblackeye-chat.netlify.app/",
+  },
   {
     title: "Oceanland Clone",
     description: "A NFT marketplace clone named Oceanland.",
-    image: "/junior-works/1.png",
+    image: "/junior-works/oceanland-clone.png",
     href: "https://aliblackeye-oceanland-clone.netlify.app/",
   },
   {
     title: "Age Calculator",
     description: "A simple age calculator.",
-    image: "/junior-works/2.png",
+    image: "/junior-works/age-calculator.png",
     href: "https://alikaragoz-projects.vercel.app/junior/age-calculator",
   },
   {
     title: "News Page",
     description: "A news page.",
-    image: "/junior-works/3.png",
+    image: "/junior-works/news-page.png",
     href: "https://alikaragoz-projects.vercel.app/junior/news-page",
   },
+  {
+    title: "hCaptcha",
+    description: "A HCaptcha.",
+    image: "/junior-works/hcaptcha.png",
+    href: "https://alikaragoz-projects.vercel.app/junior/hcaptcha",
+  },
+  {
+    title: "Restaurant App",
+    description: "A responsive restaurant app. See the menu!",
+    image: "/junior-works/restaurant-app.png",
+    href: "https://aliblackeye-restaurant.netlify.app/",
+  },
+  
 ];
+
+const internProjects = [
+
+  {
+    title: "Three Column Card",
+    description: "A three column card.",
+    image: "/intern-works/three-column-card.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/three-column-card",
+  },
+
+  {
+    title: "Huddle Landing",
+    description: "A huddle landing page.",
+    image: "/intern-works/huddle-landing.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/huddle-landing",
+  },
+  {
+    title: "Ping Single Column",
+    description: "A ping single column.",
+    image: "/intern-works/ping-single-column.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/ping-single-column",
+  },
+  {
+    title: "Single Price Grid",
+    description: "A single price grid.",
+    image: "/intern-works/single-price-grid.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/single-price-grid",
+  },
+  {
+    title: "Sign Up Form",
+    description: "A sign up form with validation.",
+    image: "/intern-works/sign-up-form.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/sign-up-form",
+  },
+  {
+    title: "Base Apparel",
+    description: "A base apparel.",
+    image: "/intern-works/base-apparel.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/base-apparel",
+  },
+  {
+    title: "Four Cards",
+    description: "A four cards.",
+    image: "/intern-works/four-cards.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/four-cards",
+  },
+  {
+    title: "Article Preview",
+    description: "An article preview.",
+    image: "/intern-works/article-preview.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/article-preview",
+  },
+  {
+    title: "Social Proof",
+    description: "A social proof.",
+    image: "/intern-works/social-proof.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/social-proof",
+  },
+  {
+    title: "FAQ Accordion",
+    description: "A FAQ accordion.",
+    image: "/intern-works/faq-accordion.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/faq-accordion",
+  },
+  {
+    title: "Profile Card",
+    description: "A profile card.",
+    image: "/intern-works/profile-card.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/profile-card",
+  },
+
+  {
+    title: "Stats Preview",
+    description: "A stats preview.",
+    image: "/intern-works/stats-preview.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/stats-preview",
+  },
+  {
+    title: "Order Summary",
+    description: "An order summary.",
+    image: "/intern-works/order-summary.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/order-summary",
+  },
+  {
+    title: "QR Code",
+    description: "A QR code.",
+    image: "/intern-works/qr-code.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/qr-code",
+  },
+  {
+    title: "Interactive Rating",
+    description: "An interactive rating.",
+    image: "/intern-works/interactive-rating.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/interactive-rating",
+  },
+  {
+    title: "NFT Card",
+    description: "An NFT card.",
+    image: "/intern-works/nft-card.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/nft-card",
+  },
+  {
+    title: "Product Preview Card",
+    description: "A product preview.",
+    image: "/intern-works/product-preview-card.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/product-preview-card",
+  },
+
+  {
+    title: "Results Summary",
+    description: "A results summary.",
+    image: "/intern-works/results-summary.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/results-summary",
+  },
+  {
+    title: "Workit Landing Page",
+    description: "A workit landing page.",
+    image: "/intern-works/workit-landing-page.png",
+    href: "https://alikaragoz-projects.vercel.app/intern/workit-landing-page",
+  },
+
+];
+
 
 export default function Home() {
   return (
@@ -161,18 +307,18 @@ export default function Home() {
       
       <Works
         title="Mid Works"
-        workItems={juniorWorks}
+        workItems={midProjects}
         href="/works/mid"
       />
       <Works
         title="Junior Works"
-        workItems={juniorWorks}
+        workItems={juniorProjects}
         href="/works/junior"
       />
       <Works
         title="Intern Works"
         href="/works/intern"
-        workItems={internWorks}
+        workItems={internProjects}
       />
     </motion.div>
   );

@@ -377,8 +377,7 @@ li {
   .works-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    justify-content: space-between;
+    gap: 16px;
 
     @media (min-width: 768px) {
       flex-direction: row;
