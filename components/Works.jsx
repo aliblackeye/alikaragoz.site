@@ -8,26 +8,7 @@ import { motion } from "framer-motion";
 export default function Works({
   title = "Current Work",
   href = "/current-work",
-  workItems = [
-    {
-      title: "Work 1",
-      href: "/work1",
-      description: "Work 1 description",
-      image: "https://picsum.photos/200/200",
-    },
-    {
-      title: "Work 2",
-      href: "/work2",
-      description: "Work 2 description",
-      image: "https://picsum.photos/200/200",
-    },
-    {
-      title: "Work 3",
-      href: "/work3",
-      description: "Work 3 description",
-      image: "https://picsum.photos/200/200",
-    },
-  ],
+  workItems,
 }) {
   return (
     <div className="works-wrapper">
@@ -61,7 +42,7 @@ export default function Works({
         animate="visible"
         className="works-list"
       >
-        {workItems.slice(0,3).map((workItem) => (
+        {workItems?.slice(0, 3)?.map((workItem) => (
           <motion.div
             key={workItem}
             variants={{
@@ -73,17 +54,16 @@ export default function Works({
             }}
           >
             <Link
-              href={workItem.href}
+              href={workItem?.href}
               className="work-item"
               target="_blank"
             >
               <div
-                className="gradient-hover 
-              "
+                className="gradient-hover"
               >
                 <div className="image">
                   <Image
-                    src={workItem.image}
+                    src={workItem?.image}
                     alt="work"
                     width={200}
                     height={200}
@@ -91,11 +71,11 @@ export default function Works({
                 </div>
                 <div className="mt-2">
                   <div className="title">
-                    <span className="text-md font-bold">{workItem.title}</span>
+                    <span className="text-md font-bold">{workItem?.title}</span>
                   </div>
                   <div className="description">
                     <span className="text-[15px] text-gray-400 font-medium">
-                      {workItem.description}
+                      {workItem?.description}
                     </span>
                   </div>
                 </div>

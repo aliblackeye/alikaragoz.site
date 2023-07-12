@@ -43,6 +43,7 @@ const technologies = [
     link: "https://www.mongodb.com/",
   },
 ];
+
 const midProjects = [
   {
     title: "Fake For Me",
@@ -56,9 +57,6 @@ const midProjects = [
     image: "/mid-works/startup.png",
     href: "https://hive-digital.vercel.app/",
   },
-];
-
-const juniorProjects = [
   {
     title: "Alypto Blockchain",
     description: "Alypto Blockchain website.",
@@ -77,6 +75,10 @@ const juniorProjects = [
     image: "/junior-works/realtime-chat-app.png",
     href: "https://aliblackeye-chat.netlify.app/",
   },
+];
+
+const juniorProjects = [
+
   {
     title: "Oceanland Clone",
     description: "A NFT marketplace clone named Oceanland.",

@@ -1,7 +1,7 @@
-import React from "react";
-
+"use client"
 import Image from "next/image";
 import Link from "next/link";
+
 import { motion } from "framer-motion";
 
 export default function WorkItem({ project }) {
@@ -17,7 +17,7 @@ export default function WorkItem({ project }) {
       className="work-item-wrapper"
     >
       <Link
-        href={project.href}
+        href={project?.href}
         className="work-item"
         target="_blank"
       >
@@ -27,7 +27,7 @@ export default function WorkItem({ project }) {
         >
           <div className="image">
             <Image
-              src={project.image}
+              src={project?.image}
               alt="work"
               width={200}
               height={200}
@@ -35,11 +35,11 @@ export default function WorkItem({ project }) {
           </div>
           <div className="mt-2">
             <div className="title">
-              <span className="text-md font-bold">{project.title}</span>
+              <span className="text-md font-bold">{project?.title}</span>
             </div>
             <div className="description">
               <span className="text-[15px] text-gray-400 font-medium">
-                {project.description}
+                {project?.description}
               </span>
             </div>
           </div>
