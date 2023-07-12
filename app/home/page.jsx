@@ -102,7 +102,7 @@ const juniorProjects = [
     title: "hCaptcha",
     description: "A HCaptcha.",
     image: "/junior-works/hcaptcha.png",
-    href: "https://alikaragoz-projects.vercel.app/junior/hcaptcha",
+    href: "https://alikaragoz-projects.vercel.app/junior/hCaptcha",
   },
   {
     title: "Restaurant App",
