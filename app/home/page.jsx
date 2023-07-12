@@ -44,6 +44,7 @@ const technologies = [
   },
 ];
 
+
 const midProjects = [
   {
     title: "Fake For Me",
@@ -60,19 +61,19 @@ const midProjects = [
   {
     title: "Alypto Blockchain",
     description: "Alypto Blockchain website.",
-    image: "/junior-works/alypto-blockchain.png",
+    image: "/mid-works/alypto-blockchain.png",
     href: "https://alypto.netlify.app/",
   },
   {
     title: "Online XOX",
     description: "An online XOX game. Also you can play offline.",
-    image: "/junior-works/online-xox.png",
+    image: "/mid-works/online-xox.png",
     href: "https://aliblackeye-xox.netlify.app/",
   },
   {
     title: "Realtime Chat App",
     description: "A realtime chat app. Chat with your friends!",
-    image: "/junior-works/realtime-chat-app.png",
+    image: "/mid-works/realtime-chat-app.png",
     href: "https://aliblackeye-chat.netlify.app/",
   },
 ];
@@ -109,11 +110,16 @@ const juniorProjects = [
     image: "/junior-works/restaurant-app.png",
     href: "https://aliblackeye-restaurant.netlify.app/",
   },
+  {
+    title: "Newsletter Sign Up",
+    description: "A newsletter sign up.",
+    image: "/junior-works/newsletter-sign-up.png",
+    href: "https://alikaragoz-projects.vercel.app/junior/newsletter-sign-up",
+  }
   
 ];
 
 const internProjects = [
-
   {
     title: "Three Column Card",
     description: "A three column card.",
@@ -231,7 +237,6 @@ const internProjects = [
     image: "/intern-works/workit-landing-page.png",
     href: "https://alikaragoz-projects.vercel.app/intern/workit-landing-page",
   },
-
 ];
 
 
