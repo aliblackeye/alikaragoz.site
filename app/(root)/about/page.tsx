@@ -1,9 +1,12 @@
 "use client";
 
+// Libs
 import { motion } from "framer-motion";
 
 // Components
-import PageInfo from "@/components/PageInfo";
+import PageInfo from "@components/page-info";
+
+import "./styles.scss";
 
 export default function AboutPage() {
   return (

@@ -1,10 +1,25 @@
 "use client"
+
+// Libs
 import Image from "next/image";
 import Link from "next/link";
-
 import { motion } from "framer-motion";
 
-export default function WorkItem({ project }) {
+// Styles
+import "./styles.scss";
+
+// Interfaces
+interface IWorkItemProps {
+  project: any;
+}
+
+export default function WorkItem(props: IWorkItemProps) {
+
+  // Destructuring props
+  const { project } = props;
+
+  console.log(project)
+
   return (
     <motion.div
       variants={{

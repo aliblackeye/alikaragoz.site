@@ -1,0 +1,17 @@
+.footer {
+    color: #718096;
+    font-size: 12px;
+
+    .name {
+        text-align: center;
+        margin-bottom: 16px;
+        font-weight: 400;
+    }
+
+    .socials {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        font-weight: 700;
+    }
+}

@@ -1,0 +1,29 @@
+.top-bg,
+.bottom-bg {
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+  }
+}
+
+.top-bg {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-bg {
+  position: relative;
+
+  .footer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

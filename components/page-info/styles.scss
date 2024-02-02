@@ -1,0 +1,31 @@
+
+.page-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    line-height: 1.4;
+  
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      background-image: linear-gradient(90deg,
+          rgb(140, 44, 227) 0%,
+          rgb(255, 36, 150) 100%);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  
+    p {
+      font-size: 18px;
+      max-width: 516px;
+    }
+  
+    .divider {
+      border: 1px solid #e5e5e5;
+      width: 20%;
+      margin: 10px 0;
+    }
+  }

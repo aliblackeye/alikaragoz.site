@@ -1,51 +1,51 @@
-"use client";
+export const photo = "https://avatars.githubusercontent.com/u/80913896?v=4";
 
-import Image from "next/image";
+export const fullName = "Ali Karagoz";
 
-/* import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules"; */
+export const title = "Software Developer";
 
-// Components
-import Works from "@/components/Works";
+export const about =
+  "It's not that difficult to find my contact information by searching aliblackeye. Know little more about me here";
 
-import { motion } from "framer-motion";
+export const description =
+  "A full-stack developer exploring the webverse. Crafting immersive experiences through coding and design. Passionate about creating user-friendly and visually stunning websites and apps. Experienced in both front-end and back-end, bringing ideas to life.";
 
-const technologies = [
+export const links = [
   {
-    name: "React",
-    image: "https://cdn.worldvectorlogo.com/logos/react-2.svg",
-    link: "https://reactjs.org/",
+    href: "/",
+    label: "home",
   },
   {
-    name: "Next.js",
-    image: "https://cdn.worldvectorlogo.com/logos/next-js.svg",
-    link: "https://nextjs.org/",
+    href: "/works/all",
+    label: "works",
   },
 
   {
-    name: "Tailwind CSS",
-    image: "https://cdn.worldvectorlogo.com/logos/tailwindcss.svg",
-    link: "https://tailwindcss.com/",
-  },
-  {
-    name: "Node.js",
-    image: "https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg",
-    link: "https://nodejs.org/",
-  },
-  {
-    name: "Express",
-    image: "https://cdn.worldvectorlogo.com/logos/express-109.svg",
-    link: "https://expressjs.com/",
-  },
-  {
-    name: "MongoDB",
-    image: "https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg",
-    link: "https://www.mongodb.com/",
+    href: "/about",
+    label: "about",
   },
 ];
 
+export const socials = [
+  {
+    href: "https://www.instagram.com/aliblackeye/",
+    label: "instagram",
+  },
+  {
+    href: "https://www.github.com/aliblackeye/",
+    label: "github",
+  },
+  {
+    href: "https://www.linkedin.com/in/aliblackeye/",
+    label: "linkedin",
+  },
+  {
+    href: "https://www.youtube.com/aliblackeye/",
+    label: "youtube",
+  },
+];
 
-const midProjects = [
+export const midProjects = [
   {
     title: "Fake For Me",
     description: "JsonGPT supported fake data generator.",
@@ -78,8 +78,7 @@ const midProjects = [
   },
 ];
 
-const juniorProjects = [
-
+export const juniorProjects = [
   {
     title: "Oceanland Clone",
     description: "A NFT marketplace clone named Oceanland.",
@@ -115,11 +114,10 @@ const juniorProjects = [
     description: "A newsletter sign up.",
     image: "/junior-works/newsletter-sign-up.png",
     href: "https://alikaragoz-projects.vercel.app/junior/newsletter-sign-up",
-  }
-  
+  },
 ];
 
-const internProjects = [
+export const internProjects = [
   {
     title: "Three Column Card",
     description: "A three column card.",
@@ -239,94 +237,36 @@ const internProjects = [
   },
 ];
 
+export const technologies = [
+  {
+    name: "React",
+    image: "https://cdn.worldvectorlogo.com/logos/react-2.svg",
+    link: "https://reactjs.org/",
+  },
+  {
+    name: "Next.js",
+    image: "https://cdn.worldvectorlogo.com/logos/next-js.svg",
+    link: "https://nextjs.org/",
+  },
 
-export default function Home() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, translateY: 20 }}
-      animate={{ opacity: 1, translateY: 0 }}
-      className="home-page"
-    >
-      <div className="profile-wrapper">
-        <div className="profile-wrapper-top">
-          <Image
-            src={"https://avatars.githubusercontent.com/u/80913896?v=4"}
-            alt="Ali Blackeye"
-            width={96}
-            height={96}
-            className="profile-image"
-          />
-          <div className="name-and-bio">
-            <h1 className="profile-name">Ali Karagoz</h1>
-            <span className="profile-bio">Software Developer</span>
-          </div>
-        </div>
-        <p className="profile-description">
-          A full-stack developer exploring the webverse. Crafting immersive
-          experiences through coding and design. Passionate about creating
-          user-friendly and visually stunning websites and apps. Experienced in
-          both front-end and back-end, bringing ideas to life.
-        </p>
-      </div>
-
-      {/* 
-             <Swiper
-        autoplay={{
-          delay: 0,
-          pauseOnMouseEnter: true,
-          disableOnInteraction: false,
-        }}
-        slidesPerView={4}
-        speed={2000}
-        centeredSlides={true}
-        loop={true}
-        modules={[Autoplay]}
-        className="stack-swiper mt-4"
-      >
-        {technologies.map((technology) => (
-          <SwiperSlide key={technology.name}>
-            <Link
-              href={technology.link}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {technology.image ? (
-                <Image
-                  src={technology.image}
-                  alt={technology.name}
-                  width={32}
-                  height={32}
-                  className="profile-image rounded-full"
-                />
-              ) : (
-                technology.name
-              )}
-            </Link>
-          </SwiperSlide>
-        ))}
-      </Swiper> 
-      */}
-
-      {/*       <Works
-        title="Mid Works"
-        href="/works/mid"
-      /> */}
-      
-      <Works
-        title="Mid Works"
-        workItems={midProjects}
-        href="/works/mid"
-      />
-      <Works
-        title="Junior Works"
-        workItems={juniorProjects}
-        href="/works/junior"
-      />
-      <Works
-        title="Intern Works"
-        href="/works/intern"
-        workItems={internProjects}
-      />
-    </motion.div>
-  );
-}
+  {
+    name: "Tailwind CSS",
+    image: "https://cdn.worldvectorlogo.com/logos/tailwindcss.svg",
+    link: "https://tailwindcss.com/",
+  },
+  {
+    name: "Node.js",
+    image: "https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg",
+    link: "https://nodejs.org/",
+  },
+  {
+    name: "Express",
+    image: "https://cdn.worldvectorlogo.com/logos/express-109.svg",
+    link: "https://expressjs.com/",
+  },
+  {
+    name: "MongoDB",
+    image: "https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg",
+    link: "https://www.mongodb.com/",
+  },
+];
