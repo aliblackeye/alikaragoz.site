@@ -41,14 +41,6 @@ html {
         border: 2px solid #666;
       }
     }
-
-    .hamburger-menu {
-      background-color: black;
-    }
-
-    .navbar {
-      background-color: rgba(0, 0, 0, 0.2);
-    }
   }
 
   &.light {
@@ -56,16 +48,15 @@ html {
       color: black;
       background-color: white;
     }
-
-    .hamburger-menu {
-      background-color: white;
-    }
-
-    .navbar {
-      color: black;
-    }
   }
 }
+
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 
 a {
   text-decoration: none;
@@ -74,67 +65,4 @@ a {
 
 ul {
   list-style: none;
-}
-
-
-.gradient-hover {
-  position: relative;
-  padding: 12px;
-
-  gap: 8px;
-  display: flex;
-  max-height: 312px;
-  height: 100%;
-
-  .description {
-    /* text-[15px] text-gray-400 font-medium  */
-    font-size: 15px;
-    color: #9ca3af;
-    font-weight: 500;
-    @media (min-width: 708px) {
-      max-width: 188px;
-    }
-  }
-
-  @media (min-width: 708px) {
-    flex-direction: column;
-  }
-
-  .image {
-    img {
-      /* rounded-xl */
-
-      border-radius: 12px;
-      width: 96px;
-      height: 96px;
-
-      @media (min-width: 708px) {
-        width: 188px;
-        height: 188px;
-      }
-
-      object-fit: cover !important;
-    }
-  }
-}
-
-.gradient-hover:after {
-  background-image: linear-gradient(to right, #4c0610, #262c78);
-  border-radius: 12px;
-  box-shadow: 0 0 0.5rem 0.25rem rgba(0, 0, 0, 0.5);
-  visibility: visible;
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: opacity 0.5s ease-out;
-
-  z-index: -1;
-  opacity: 0;
-}
-
-.gradient-hover:hover:after {
-  opacity: 0.5;
 }

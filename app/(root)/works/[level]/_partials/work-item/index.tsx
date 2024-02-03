@@ -18,10 +18,9 @@ export default function WorkItem(props: IWorkItemProps) {
   // Destructuring props
   const { project } = props;
 
-  console.log(project)
-
   return (
     <motion.div
+      className="work-item gradient-hover"
       variants={{
         hidden: { y: 20, opacity: 0 },
         visible: {
@@ -29,37 +28,26 @@ export default function WorkItem(props: IWorkItemProps) {
           opacity: 1,
         },
       }}
-      className="work-item-wrapper"
     >
-      <Link
-        href={project?.href}
-        className="work-item"
-        target="_blank"
-      >
-        <div
-          className="gradient-hover 
-    "
-        >
-          <div className="image">
-            <Image
-              src={project?.image}
-              alt="work"
-              width={200}
-              height={200}
-            />
+      <Link href={project.href} target="_blank">
+        <div className="image">
+          <Image
+            src={project?.image}
+            alt="work"
+            width={1920}
+            height={1080}
+          />
+        </div>
+        <div className="title-and-description">
+          <div className="title">
+            {project?.title}
           </div>
-          <div className="mt-2">
-            <div className="title">
-              <span className="text-md font-bold">{project?.title}</span>
-            </div>
-            <div className="description">
-              <span className="text-[15px] text-gray-400 font-medium">
-                {project?.description}
-              </span>
-            </div>
+          <div className="description">
+            {project?.description}
           </div>
         </div>
       </Link>
     </motion.div>
+
   );
 }

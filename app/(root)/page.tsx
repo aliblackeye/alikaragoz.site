@@ -23,13 +23,14 @@ export default function Home() {
     >
       <div className="profile-wrapper">
         <div className="profile-wrapper-top">
-          <Image
-            src={photo}
-            alt={fullName}
-            width={96}
-            height={96}
-            className="profile-image"
-          />
+          <div className="profile-image">
+            <Image
+              src={photo}
+              alt={fullName}
+              width={1920}
+              height={1080}
+            />
+          </div>
           <div className="name-and-bio">
             <h1 className="profile-name">{fullName}</h1>
             <span className="profile-bio">{title}</span>

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { BsFillCaretRightFill } from "react-icons/bs";
 
 // Styles
-import "./styles.scss";
+import WorkItem from "../../app/(root)/works/[level]/_partials/work-item";
 
 // Interfaces
 interface IWorksProps {
@@ -31,60 +31,12 @@ export default function Works(props: IWorksProps) {
         </Link>
       </div>
       {/* WORKS LIST */}
-      <motion.div
-        variants={{
-          hidden: { opacity: 1, scale: 0 },
-          visible: {
-            opacity: 1,
-            scale: 1,
-            transition: {
-              delayChildren: 0.3,
-              staggerChildren: 0.2,
-              bounce: 0.5,
-            },
-          },
-        }}
-        initial="hidden"
-        animate="visible"
-        className="works-list"
-      >
+      <div className="works-list">
         {/* WORK ITEMS */}
-        {workItems?.slice(0, 3)?.map((workItem) => (
-          <motion.div
-            key={workItem}
-            variants={{
-              hidden: { y: 20, opacity: 0 },
-              visible: {
-                y: 0,
-                opacity: 1,
-              },
-            }}
-          >
-            <Link href={workItem?.href} className="work-item" target="_blank">
-              <div className="gradient-hover">
-                <div className="image">
-                  <Image
-                    src={workItem?.image}
-                    alt="work"
-                    width={200}
-                    height={200}
-                  />
-                </div>
-                <div className="mt-2">
-                  <div className="title">
-                    <span className="text-md font-bold">{workItem?.title}</span>
-                  </div>
-                  <div className="description">
-                    <span className="text-[15px] text-gray-400 font-medium">
-                      {workItem?.description}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
+        {workItems?.slice(0, 3)?.map((workItem, index) => (
+          <WorkItem project={workItem} key={index} />
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

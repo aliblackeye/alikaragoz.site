@@ -8,29 +8,14 @@
 
     .level {
       max-width: 80px;
+      padding: 8px 8px;
+
       width: 100%;
       text-align: center;
 
       &.active {
-        padding-inline: 12px;
         border-radius: 12px;
         border: 2px solid #262c78;
-      }
-    }
-  }
-
-  .works-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    @media (min-width: 708px) {
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 16px;
-
-      .work-item-wrapper {
-        max-width: 220px;
       }
     }
   }
