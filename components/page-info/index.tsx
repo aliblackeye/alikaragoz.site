@@ -12,7 +12,6 @@ export default function PageInfo({
       <h1>{title}</h1>
       <p>{description}</p>
 
-
       <div className="divider">
         <Image
           src="/divider.svg"

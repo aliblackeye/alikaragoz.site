@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 // Data
-import { internProjects, juniorProjects, midProjects } from "../../../../data";
+import { internProjects, juniorProjects, midProjects, works } from "../../../../data";
 
 // Components
 import PageInfo from "@components/page-info";
@@ -35,7 +35,7 @@ export default function WorkPage(props: IWorkPageProps) {
     >
       <PageInfo
         title="Works"
-        description="Explore my works and experience the passion and creativity I've poured into each project."
+        description={works}
       />
 
       <div className="levels">

@@ -23,19 +23,24 @@
       .profile-name {
         font-size: 30px;
         font-weight: 700;
+        margin-bottom: 4px;
       }
 
       .profile-bio {
         color: rgb(75, 85, 99);
         font-weight: 700;
+        font-size: 16px;
       }
     }
 
     .profile-description {
-      font-size: 16px;
+      font-size: 20px;
+      line-height: 29px;
 
       @media (max-width: 724px) {
-        font-size: 20px;
+        font-size: 17px;
+      line-height: 24px;
+
       }
     }
   }

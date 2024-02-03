@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import PageInfo from "@components/page-info";
 
 import "./styles.scss";
+import { about } from "../../../data";
 
 export default function AboutPage() {
   return (
@@ -17,7 +18,7 @@ export default function AboutPage() {
     >
       <PageInfo
         title="About"
-        description="It's not that difficult to find my contact information by searching aliblackeye. Know little more about me here"
+        description={about}
       />
     </motion.div>
   );

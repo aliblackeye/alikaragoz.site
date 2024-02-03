@@ -29,7 +29,7 @@ export default function WorkItem(props: IWorkItemProps) {
         },
       }}
     >
-      <Link href={project.href} target="_blank">
+      <Link href={`work/${project.href}`}>
         <div className="image">
           <Image
             src={project?.image}
