@@ -12,7 +12,7 @@ export default function Container(props: IContainerProps) {
   const { children, className } = props;
   return (
     <div
-      className={`container ${className ? className : ""}`}
+      className={`${className ? className : ""} container`}
     >
       {children}
     </div>

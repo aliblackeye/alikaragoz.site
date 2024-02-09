@@ -31,12 +31,12 @@ export default function ClientLayout(props: IClientLayoutProps) {
     <>
       <Header />
       <div className="top-bg">
-        <Image src={"/top.png"} alt="top" width={1920} height={1080} />
+        <Image src={"/images/top.png"} alt="top" width={1920} height={1080} />
 
       </div>
       {children}
       <div className="bottom-bg">
-        <Image src={"/bottom.png"} alt="bottom" width={1920} height={1080} />
+        <Image src={"/images/bottom.png"} alt="bottom" width={1920} height={1080} />
         <Footer />
       </div>
     </>

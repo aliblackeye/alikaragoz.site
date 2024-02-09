@@ -22,6 +22,9 @@
       }
     ],
     "paths": {
+      "@styles/*": [
+        "./public/styles/*"
+      ],
       "@components/*": [
         "./components/*"
       ],
@@ -30,6 +33,9 @@
       ],
       "@fonts/*": [
         "./common/fonts/*"
+      ],
+      "@locales/*": [
+        "./common/locales/*"
       ],
     }
   },

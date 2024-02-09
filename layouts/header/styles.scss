@@ -14,7 +14,6 @@
     opacity: 1;
     visibility: visible;
 
-
     @media (max-width: 724px) {
       align-items: start;
       justify-content: flex-end;
@@ -48,10 +47,32 @@
 
     .header-right {
       display: flex;
+      align-items: center;
       gap: 16px;
 
-      .dark-mode-wrapper {
+      .language-switch {
+        display: flex;
+        width: 16px;
+        height: 16px;
         cursor: pointer;
+      }
+
+      .dark-mode-wrapper {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .socials {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        a {
+          display: flex;
+          align-items: center;
+        }
+
       }
 
       .menu-icon {

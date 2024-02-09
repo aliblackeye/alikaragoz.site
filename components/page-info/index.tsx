@@ -14,7 +14,7 @@ export default function PageInfo({
 
       <div className="divider">
         <Image
-          src="/divider.svg"
+          src="/images/divider.svg"
           alt="Hero"
           width={1920}
           height={1080}

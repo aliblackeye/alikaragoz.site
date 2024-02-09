@@ -1,0 +1,26 @@
+.not-found-page{
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+    }
+
+    .title {
+        font-size: 64px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-top: 32px;
+    }
+
+    .description {
+        font-size: 24px;
+        margin-bottom: 16px;
+        font-weight: 500;
+    }
+}
