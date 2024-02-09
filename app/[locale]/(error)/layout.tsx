@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     return {
         title: {
-            template: 'Pawder | %s',
+            template: 'Ali Karagoz | %s',
             default: t('GLOBAL.NOT_FOUND.TITLE'), // a default is required when creating a template
         }
     }
