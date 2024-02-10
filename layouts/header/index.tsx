@@ -30,7 +30,6 @@ import Container from "@components/container";
 import "./styles.scss";
 
 export default function Header() {
-
   // Locales
   const locale = useCurrentLocale();
   const changeLocale = useChangeLocale() as any;
@@ -60,7 +59,7 @@ export default function Header() {
       changeLocale("tr");
     }
     if (locale === "tr") {
-      changeLocale("en");;
+      changeLocale("en");
     }
   };
 
@@ -87,18 +86,25 @@ export default function Header() {
 
   return (
     <header className="header">
-      <Container >
+      <Container>
         <nav ref={navRef}>
           <div className="header-left">
             {links.map((link, index) => (
               <Link href={link.href} key={index} className="nav-link">
-                {t(`GLOBAL.PAGE_TITLES.${link.label.toLocaleUpperCase()}`).toLocaleLowerCase()}
+                {t(
+                  `GLOBAL.PAGE_TITLES.${link.label.toLocaleUpperCase()}`
+                ).toLocaleLowerCase()}
               </Link>
             ))}
           </div>
           <ul className="header-right">
             <div className="language-switch" onClick={handleChangeLocale}>
-              <Image src={`/images/${locale}.png`} alt="flag" width={1920} height={1920} />
+              <Image
+                src={`/images/${locale}.png`}
+                alt="flag"
+                width={1920}
+                height={1920}
+              />
             </div>
             <div
               onClick={() => setDarkMode(!darkMode)}
@@ -109,17 +115,18 @@ export default function Header() {
             <div className="socials">
               {socials.map((social, index) => (
                 <Link href={social.href} key={index} target="_blank">
-                  {social.label === "instagram" && <AiOutlineInstagram size={18} />}
+                  {social.label === "instagram" && (
+                    <AiOutlineInstagram size={18} />
+                  )}
                   {social.label === "github" && <AiOutlineGithub size={18} />}
-                  {social.label === "linkedin" && <AiOutlineLinkedin size={18} />}
+                  {social.label === "linkedin" && (
+                    <AiOutlineLinkedin size={18} />
+                  )}
                   {social.label === "youtube" && <AiOutlineYoutube size={18} />}
                 </Link>
               ))}
             </div>
-            <div
-              className="menu-icon"
-              onClick={handleHamburgerMenu}
-            >
+            <div className="menu-icon" onClick={handleHamburgerMenu}>
               {isMenuOpen ? (
                 <AiOutlineClose size={18} />
               ) : (

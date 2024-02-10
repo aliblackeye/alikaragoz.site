@@ -88,8 +88,7 @@ export default function Home() {
         ))}
       </Swiper> 
       */}
-
-        {/* <Works
+        <Works
           title={t("GLOBAL.COMPONENTS.WORKS.TITLES.MID_WORKS")}
           workItems={midProjects}
           href="/works/mid"
@@ -98,7 +97,7 @@ export default function Home() {
           title={t("GLOBAL.COMPONENTS.WORKS.TITLES.JUNIOR_WORKS")}
           workItems={juniorProjects}
           href="/works/junior"
-        /> */}
+        />
       </Container>
     </motion.div>
   );

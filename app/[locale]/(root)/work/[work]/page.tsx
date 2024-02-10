@@ -18,8 +18,6 @@ export default function Work(props: IWorkProps) {
 
     const workName = pathname.split('/')[2]
 
-    console.log(workName)
-
     return (
         <div className='work-page'>
             <Container className='work-page-container'>

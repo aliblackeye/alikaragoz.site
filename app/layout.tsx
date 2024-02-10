@@ -13,7 +13,7 @@ export const metadata = {
 export default function MainLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className="dark">
-            <body className={`light ${fonts.satoshi.className}`}>
+            <body className={`${fonts.satoshi.className}`}>
                 {children}
             </body>
         </html>

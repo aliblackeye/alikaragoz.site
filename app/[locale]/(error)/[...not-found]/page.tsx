@@ -1,5 +1,5 @@
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation"
 
-export default async function ForwardToNotFound() {
-    notFound()
+export default async function NotFound() {
+  redirect("/not-found")
 }

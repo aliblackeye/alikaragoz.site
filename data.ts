@@ -44,31 +44,31 @@ export const midProjects = [
     title: "Fake For Me",
     description: "JsonGPT supported fake data generator.",
     image: "mid-works/fake-for-me.png",
-    href: "fakefor.me",
+    href: "fakeforme",
   },
   {
     title: "Digital Hive",
     description: "My startup company website.",
     image: "mid-works/startup.png",
-    href: "hive-digital.vercel.app/",
+    href: "hive-digital",
   },
   {
     title: "Alypto Blockchain",
     description: "Alypto Blockchain website.",
     image: "mid-works/alypto-blockchain.png",
-    href: "alypto.netlify.app",
+    href: "alypto",
   },
   {
     title: "Online XOX",
     description: "An online XOX game. Also you can play offline.",
     image: "mid-works/online-xox.png",
-    href: "aliblackeye-xox.netlify.app/",
+    href: "online-xox",
   },
   {
     title: "Realtime Chat App",
     description: "A realtime chat app. Chat with your friends!",
     image: "mid-works/realtime-chat-app.png",
-    href: "aliblackeye-chat.netlify.app/",
+    href: "realtime-chat-app",
   },
 ];
 
@@ -77,13 +77,13 @@ export const juniorProjects = [
     title: "Oceanland Clone",
     description: "A NFT marketplace clone named Oceanland.",
     image: "junior-works/oceanland-clone.png",
-    href: "https://aliblackeye-oceanland-clone.netlify.app/",
+    href: "oceanland-clone",
   },
   {
     title: "Restaurant App",
     description: "A responsive restaurant app. See the menu!",
     image: "junior-works/restaurant-app.png",
-    href: "https://aliblackeye-restaurant.netlify.app/",
+    href: "restaurant-app",
   },
 ];
 

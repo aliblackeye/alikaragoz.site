@@ -7,7 +7,7 @@ import { useI18n } from "@locales/client";
 // Icons
 import { BsFillCaretRightFill } from "react-icons/bs";
 
-// Styles
+// Components
 import WorkItem from "@components/work-item";
 
 // Interfaces
@@ -39,8 +39,7 @@ export default function Works(props: IWorksProps) {
       <div className="works-list">
         {/* WORK ITEMS */}
         {workItems?.slice(0, 3)?.map((workItem, index) => {
-          console.log(workItem);
-          return <WorkItem project={workItem} key={index} />;
+          return <WorkItem project={workItem} key={index} useAnimation/>;
         })}
       </div>
     </div>

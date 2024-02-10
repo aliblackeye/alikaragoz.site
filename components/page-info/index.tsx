@@ -1,7 +1,9 @@
 const exampleDesc = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam`;
 
 import Image from "next/image";
-import "./styles.scss";
+
+// Styles
+import "@styles/_page-info.scss";
 
 export default function PageInfo({
   title = "Title",

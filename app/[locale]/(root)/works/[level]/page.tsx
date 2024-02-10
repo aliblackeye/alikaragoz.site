@@ -20,7 +20,6 @@ interface IWorkPageProps {
 }
 
 export default function WorkPage(props: IWorkPageProps) {
-
   // Destructuring props
   const { params } = props;
 
@@ -81,27 +80,16 @@ export default function WorkPage(props: IWorkPageProps) {
         >
           {level === "junior" &&
             juniorProjects.map((project, index) => (
-              <WorkItem
-                key={index}
-                project={project}
-              />
+              <WorkItem key={index} project={project} />
             ))}
           {level === "mid" &&
             midProjects.map((project, index) => (
-              <WorkItem
-                key={index}
-                project={project}
-              />
+              <WorkItem key={index} project={project} />
             ))}
           {level === "all" &&
-            [...midProjects, ...juniorProjects,].map(
-              (project, index) => (
-                <WorkItem
-                  key={index}
-                  project={project}
-                />
-              )
-            )}
+            [...midProjects, ...juniorProjects].map((project, index) => (
+              <WorkItem key={index} project={project} />
+            ))}
         </motion.div>
       </Container>
     </motion.div>

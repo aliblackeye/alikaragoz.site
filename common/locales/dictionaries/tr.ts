@@ -4,6 +4,7 @@ export default {
       CTA: {
         START: "Başla",
         FINISH: "Bitir",
+        GO_BACK_HOME: "Ana Sayfaya Dön",
       },
       WORKS: {
         TITLES: {
