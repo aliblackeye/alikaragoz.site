@@ -17,7 +17,6 @@ import Container from "@components/container";
 import { useI18n } from "@locales/client";
 
 export default function Home() {
-
   // Locale
   const t = useI18n() as any;
 
@@ -39,8 +38,12 @@ export default function Home() {
               />
             </div>
             <div className="name-and-bio">
-              <h1 className="profile-name">{t("GLOBAL.PAGE_CONTENTS.HOME.FULLNAME")}</h1>
-              <span className="profile-bio">{t("GLOBAL.PAGE_CONTENTS.HOME.TITLE")}</span>
+              <h1 className="profile-name">
+                {t("GLOBAL.PAGE_CONTENTS.HOME.FULLNAME")}
+              </h1>
+              <span className="profile-bio">
+                {t("GLOBAL.PAGE_CONTENTS.HOME.TITLE")}
+              </span>
             </div>
           </div>
           <p className="profile-description">
@@ -86,12 +89,7 @@ export default function Home() {
       </Swiper> 
       */}
 
-        {/*       <Works
-        title="Mid Works"
-        href="/works/mid"
-      /> */}
-
-        <Works
+        {/* <Works
           title={t("GLOBAL.COMPONENTS.WORKS.TITLES.MID_WORKS")}
           workItems={midProjects}
           href="/works/mid"
@@ -100,7 +98,7 @@ export default function Home() {
           title={t("GLOBAL.COMPONENTS.WORKS.TITLES.JUNIOR_WORKS")}
           workItems={juniorProjects}
           href="/works/junior"
-        />
+        /> */}
       </Container>
     </motion.div>
   );
