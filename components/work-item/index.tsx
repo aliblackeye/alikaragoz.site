@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 // Libs
 import Image from "next/image";
@@ -14,7 +14,6 @@ interface IWorkItemProps {
 }
 
 export default function WorkItem(props: IWorkItemProps) {
-
   // Destructuring props
   const { project } = props;
 
@@ -29,7 +28,11 @@ export default function WorkItem(props: IWorkItemProps) {
         },
       }}
     >
-      <Link href={`work/${project.href}`}>
+      <Link
+        /* href={`work/${project.href}`} */
+        href={`https://${project?.href}`}
+        target="_blank"
+      >
         <div className="image">
           <Image
             src={`/images/${project?.image}`}
@@ -39,15 +42,10 @@ export default function WorkItem(props: IWorkItemProps) {
           />
         </div>
         <div className="title-and-description">
-          <div className="title">
-            {project?.title}
-          </div>
-          <div className="description">
-            {project?.description}
-          </div>
+          <div className="title">{project?.title}</div>
+          <div className="description">{project?.description}</div>
         </div>
       </Link>
     </motion.div>
-
   );
 }

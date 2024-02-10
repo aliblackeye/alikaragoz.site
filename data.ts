@@ -50,25 +50,25 @@ export const midProjects = [
     title: "Digital Hive",
     description: "My startup company website.",
     image: "mid-works/startup.png",
-    href: "hive-digital",
+    href: "hive-digital.vercel.app/",
   },
   {
     title: "Alypto Blockchain",
     description: "Alypto Blockchain website.",
     image: "mid-works/alypto-blockchain.png",
-    href: "alypto",
+    href: "alypto.netlify.app",
   },
   {
     title: "Online XOX",
     description: "An online XOX game. Also you can play offline.",
     image: "mid-works/online-xox.png",
-    href: "online-xox",
+    href: "aliblackeye-xox.netlify.app/",
   },
   {
     title: "Realtime Chat App",
     description: "A realtime chat app. Chat with your friends!",
     image: "mid-works/realtime-chat-app.png",
-    href: "realtime-chat-app",
+    href: "aliblackeye-chat.netlify.app/",
   },
 ];
 
@@ -77,37 +77,13 @@ export const juniorProjects = [
     title: "Oceanland Clone",
     description: "A NFT marketplace clone named Oceanland.",
     image: "junior-works/oceanland-clone.png",
-    href: "oceanland-clone",
-  },
-  {
-    title: "Age Calculator",
-    description: "A simple age calculator.",
-    image: "junior-works/age-calculator.png",
-    href: "age-calculator",
-  },
-  {
-    title: "News Page",
-    description: "A news page.",
-    image: "junior-works/news-page.png",
-    href: "news-page",
-  },
-  {
-    title: "hCaptcha",
-    description: "A HCaptcha.",
-    image: "junior-works/hcaptcha.png",
-    href: "hCaptcha",
+    href: "https://aliblackeye-oceanland-clone.netlify.app/",
   },
   {
     title: "Restaurant App",
     description: "A responsive restaurant app. See the menu!",
     image: "junior-works/restaurant-app.png",
-    href: "restaurant-landing-app",
-  },
-  {
-    title: "Newsletter Sign Up",
-    description: "A newsletter sign up.",
-    image: "junior-works/newsletter-sign-up.png",
-    href: "newsletter-sign-up",
+    href: "https://aliblackeye-restaurant.netlify.app/",
   },
 ];
 

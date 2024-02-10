@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 // Libs
 import Link from "next/link";
@@ -12,13 +12,12 @@ import WorkItem from "@components/work-item";
 
 // Interfaces
 interface IWorksProps {
-  title: string,
-  href: string,
+  title: string;
+  href: string;
   workItems: any;
 }
 
 export default function Works(props: IWorksProps) {
-
   // Destructuring props
   const { title = "Current Work", href = "/current-work", workItems } = props;
 
@@ -30,7 +29,9 @@ export default function Works(props: IWorksProps) {
       <div className="works-header">
         <h1 className="works-title ">{title}</h1>
         <Link href={href} className="see-all-link">
-          <span className="see-all-text">{t("GLOBAL.COMPONENTS.WORKS.SEE_ALL")}</span>
+          <span className="see-all-text">
+            {t("GLOBAL.COMPONENTS.WORKS.SEE_ALL")}
+          </span>
           <BsFillCaretRightFill size={10} color="#393f8f" />
         </Link>
       </div>
@@ -38,11 +39,9 @@ export default function Works(props: IWorksProps) {
       <div className="works-list">
         {/* WORK ITEMS */}
         {workItems?.slice(0, 3)?.map((workItem, index) => {
-
           console.log(workItem);
-          return <WorkItem project={workItem} key={index} />
-        }
-        )}
+          return <WorkItem project={workItem} key={index} />;
+        })}
       </div>
     </div>
   );
