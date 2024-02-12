@@ -10,11 +10,11 @@ import { juniorProjects, midProjects } from "../../../../../data";
 // Components
 import PageInfo from "@components/page-info";
 import WorkItem from "@components/work-item";
-
-import "./styles.scss";
 import Container from "@components/container";
+
 import { useI18n } from "@locales/client";
 
+import "@styles/_works-page.scss";
 interface IWorkPageProps {
   params: { level: string };
 }

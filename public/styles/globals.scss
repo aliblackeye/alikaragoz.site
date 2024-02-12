@@ -1,6 +1,6 @@
 :root {
   // Colors
-  --primary: #FF8000;
+  --primary: #6f4deb;
   --secondary: #FFF0E0;
   --disabled: #FEF2E7;
 
@@ -13,9 +13,16 @@
   --white: #FFFFFF;
 
   // Status
-  --danger: #FF3040;
+  --danger: #f04c5a;
   --success: #23C751;
-  --warning: #BB4F30;
+  --warning: #f78a0d;
+
+  // Darks
+  --primary-dark: #5A3DCD;
+  --danger-dark: #d43945;
+  --warning-dark: #e67a0a;
+  --success-dark: #1E9E3E;
+
 }
 
 
@@ -24,7 +31,6 @@
   padding: 0;
   box-sizing: border-box;
   transition: background-color 0.2s ease-out;
-  user-select: none;
 }
 
 
@@ -94,3 +100,47 @@ ul {
   list-style: none;
 }
 
+
+.code {
+  position: relative;
+
+  .copy-action {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 18px;
+    top: 18px;
+    font-size: 20px;
+    color: var(--primary);
+    transition: color 0.2s ease-out;
+
+    &:hover {
+      color: var(--helper);
+    }
+
+  }
+}
+
+.markdown-editor {
+  width: 100%;
+  height: 400px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background-color: var(--dark);
+  color: #888;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s ease-out;
+
+  &:focus {
+    border-color: var(--primary);
+  }
+}

@@ -12,7 +12,7 @@ import { juniorProjects, midProjects, photo } from "../../../data";
 // Components
 import Works from "@components/works";
 
-import "./styles.scss";
+import "@styles/_home-page.scss";
 import Container from "@components/container";
 import { useI18n } from "@locales/client";
 

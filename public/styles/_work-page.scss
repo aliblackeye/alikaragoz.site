@@ -1,0 +1,75 @@
+.work-page {
+
+    &-container {
+        padding: 8px 20px !important;
+    }
+    &-actions {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+
+            &:hover {
+                background-color: var(--primary-dark);
+            }
+
+            &:disabled {
+                background-color: var(--border);
+                cursor: not-allowed;
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+
+            &.delete {
+                background-color: var(--danger);
+
+                &:hover {
+                    background-color: var(--danger-dark);
+                }
+            }
+
+            &.edit {
+                background-color: var(--warning);
+
+                &:hover {
+                    background-color: var(--warning-dark);
+                }
+            }
+
+            &.cancel {
+                background-color: var(--border);
+
+                &:hover {
+                    background-color: var(--border-dark);
+                }
+            }
+
+            &.share {
+                background-color: var(--primary);
+
+                &:hover {
+                    background-color: var(--primary-dark);
+                }
+            }
+        }
+    }
+
+}

@@ -3,7 +3,6 @@ export const photo = "https://avatars.githubusercontent.com/u/80913896?v=4";
 export const about =
   "It's not that difficult to find my contact information by searching aliblackeye. Know little more about me here";
 
-
 export const links = [
   {
     href: "/",
@@ -118,5 +117,27 @@ export const technologies = [
     name: "MongoDB",
     image: "https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg",
     link: "https://www.mongodb.com/",
+  },
+];
+
+export const works = [
+  {
+    href: "fakeforme",
+    title: "Fake For Me",
+    description: "JsonGPT supported fake data generator.",
+    image: "mid-works/fake-for-me.png",
+    content: `# A paragraph with *emphasis* and **strong importance**.
+
+    > A block quote with ~strikethrough~ and a URL: https://reactjs.org.
+    
+    * Lists
+    * [ ] todo
+    * [x] done
+    
+    A table:
+    
+    | a | b |
+    | - | - |
+    `,
   },
 ];
