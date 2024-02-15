@@ -3,7 +3,7 @@ import { getI18n } from "@locales/server";
 
 // Layouts
 import { Providers } from "@layouts/providers";
-import ClientLayout from "@layouts/client-layout";
+import ClientRootLayout from "@layouts/root-layout";
 
 export async function generateMetadata(): Promise<Metadata> {
 
@@ -20,9 +20,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({ params: { locale }, children }: { params: { locale: string }, children: React.ReactNode }) {
   return (
     <Providers locale={locale}>
-      <ClientLayout>
+      <ClientRootLayout>
         {children}
-      </ClientLayout>
+      </ClientRootLayout>
     </Providers>
   );
 }

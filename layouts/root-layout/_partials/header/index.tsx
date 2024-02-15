@@ -21,7 +21,7 @@ import { FiMoon } from "react-icons/fi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 // Data
-import { links, socials } from "../../data";
+import { links, socials } from "../../../../data";
 
 // Components
 import Container from "@components/container";

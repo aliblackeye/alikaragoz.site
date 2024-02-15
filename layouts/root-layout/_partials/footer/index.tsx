@@ -2,7 +2,7 @@
 import Link from 'next/link'
 
 import "./styles.scss";
-import { socials } from '../../data';
+import { socials } from '../../../../data';
 
 export default function Footer() {
     return (
