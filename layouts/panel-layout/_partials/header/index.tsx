@@ -1,15 +1,27 @@
 import { CgMenuRight, CgMenuLeft } from "react-icons/cg";
-import { useState } from "react";
 
-export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+interface IHeaderProps {
+  isSidebarCollapsed: boolean;
+  setIsSidebarCollapsed: (isCollapsed: boolean) => void;
+}
+
+export default function Header(props: IHeaderProps) {
+  // Destructuring props
+  const { isSidebarCollapsed, setIsSidebarCollapsed } = props;
 
   return (
     <header className="panel-header">
-      <div className="menu-trigger" 
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      <div
+        className="menu-trigger"
+        onClick={() => {
+          setIsSidebarCollapsed(!isSidebarCollapsed);
+        }}
       >
-        {isMenuOpen ? <CgMenuLeft /> : <CgMenuRight />}
+        {!isSidebarCollapsed ? (
+          <CgMenuLeft size={18} />
+        ) : (
+          <CgMenuRight size={18} />
+        )}
       </div>
     </header>
   );

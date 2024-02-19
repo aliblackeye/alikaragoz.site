@@ -2,42 +2,6 @@
     display: flex;
     background-color: #020d22;
 
-    .panel-sidebar {
-        min-width: 300px;
-        padding-top: 60px;
-        padding-inline: 20px;
-        
-        .panel-items {
-            padding-inline: 4px;
-            overflow-y: auto;
-            height: calc(100vh - 60px);
-            .sidebar-item {
-                padding: 10px 12px;
-                margin-bottom: 20px;
-                color: #fff;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                border: 1px solid transparent;
-                border-radius: 8px;
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                font-weight: bold;
-
-                &:hover {
-                    color: #f5f5f5;
-                }
-
-                &.active {
-                    background-color: #f5f5f5;
-                    color: #232f47;
-
-                    transition: background-color 0.3s ease;
-                }
-            }
-        }
-    }
-
     .panel-header-and-content {
         width: 100%;
         overflow: hidden;

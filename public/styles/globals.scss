@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   // Colors
   --primary: #6f4deb;
@@ -143,4 +147,9 @@ ul {
   &:focus {
     border-color: var(--primary);
   }
+}
+
+.root-content {
+  position: relative;
+  z-index: 1;
 }

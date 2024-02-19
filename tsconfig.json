@@ -37,6 +37,15 @@
       "@locales/*": [
         "./common/locales/*"
       ],
+      "@apis/*": [
+        "./apis/*"
+      ],
+      "@utils/*": [
+        "./common/utils/utils.ts"
+      ],
+      "@interfaces/*": [
+        "./common/interfaces/*"
+      ],
     }
   },
   "include": [

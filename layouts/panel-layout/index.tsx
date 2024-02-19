@@ -22,6 +22,7 @@ export default function PanelLayout(props: IPanelLayoutProps) {
 
   // States
   const [token, setToken] = useState(null);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   // Effects
   useEffect(() => {
@@ -46,13 +47,14 @@ export default function PanelLayout(props: IPanelLayoutProps) {
     return <>{children}</>;
   }
 
-  // Token yoksa, çocukları doğrudan render edin
-
   return (
     <div className="panel-layout">
-      <Sidebar />
+      <Sidebar collapsed={isSidebarCollapsed} />
       <div className="panel-header-and-content">
-        <Header />
+        <Header
+          isSidebarCollapsed={isSidebarCollapsed}
+          setIsSidebarCollapsed={setIsSidebarCollapsed}
+        />
         <main className="panel-content">{children}</main>
       </div>
     </div>
