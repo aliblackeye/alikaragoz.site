@@ -30,7 +30,7 @@ export default function Works(props: IWorksProps) {
         <h1 className="works-title ">{title}</h1>
         <Link href={href} className="see-all-link">
           <span className="see-all-text">
-            {t("GLOBAL.COMPONENTS.WORKS.SEE_ALL")}
+            {t("COMPONENTS.WORKS.SEE_ALL")}
           </span>
           <BsFillCaretRightFill size={10} color="#393f8f" />
         </Link>

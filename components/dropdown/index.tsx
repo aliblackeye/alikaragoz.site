@@ -27,7 +27,7 @@ interface IDropdownProps {
 export default function Dropdown(props: IDropdownProps) {
 
     // Props
-    const { children, hoverStatus = STATUS.primary, items, selectionMode, selectedKeys, onSelectionChange, onAction, disabledKeys, } = props;
+    const { children, hoverStatus = STATUS.PRIMARY, items, selectionMode, selectedKeys, onSelectionChange, onAction, disabledKeys, } = props;
 
     return (
         <NextDropdown>

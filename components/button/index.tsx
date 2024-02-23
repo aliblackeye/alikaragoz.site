@@ -1,4 +1,5 @@
 "use client";
+import { ReactNode } from "react";
 
 // Libs
 import { useRouter } from "next/navigation";
@@ -15,13 +16,27 @@ import { useI18n } from "@locales/client";
 import "@styles/_button.scss";
 
 interface IButtonProps extends ButtonProps {
-  label: string;
+  label?: string;
   status?: STATUS;
+  icon?: ReactNode;
+  endIcon?: ReactNode;
 }
 
 export default function Button(props: IButtonProps) {
   // Props
-  const { status = STATUS.primary, label, className, href, onClick } = props;
+  const {
+    status = STATUS.PRIMARY,
+    label,
+    className,
+    href,
+    onClick,
+    endContent,
+    startContent,
+    icon,
+    endIcon,
+    radius,
+    ...others
+  } = props;
 
   // Variables
   const router = useRouter();
@@ -30,8 +45,8 @@ export default function Button(props: IButtonProps) {
 
   return (
     <NextButton
-      {...props}
-      radius="full"
+      {...others}
+      radius={"md" ?? radius}
       onClick={(e) => {
         if (href) {
           router.push(href);
@@ -39,8 +54,21 @@ export default function Button(props: IButtonProps) {
         }
         onClick && onClick(e);
       }}
-      className={`pawder-button ${className}`}
+      className={`nextui-button ${className}`}
       color={status as any}
+      isIconOnly={!label}
+      startContent={
+        <>
+          {icon}
+          {startContent}
+        </>
+      }
+      endContent={
+        <>
+          {endIcon}
+          {endContent}
+        </>
+      }
     >
       {t(label)}
     </NextButton>

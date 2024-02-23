@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: {
       template: "Ali Karagoz | %s",
-      default: t("GLOBAL.PAGE_TITLES.HOME"), // a default is required when creating a template
+      default: t("PAGE_TITLES.HOME"), // a default is required when creating a template
     },
   };
 }

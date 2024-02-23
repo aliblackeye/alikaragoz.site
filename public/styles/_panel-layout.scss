@@ -1,6 +1,6 @@
 .panel-layout {
     display: flex;
-    background-color: #020d22;
+    background-color: #18181b;
 
     .panel-header-and-content {
         width: 100%;
@@ -28,7 +28,6 @@
             max-height: calc(100vh - 60px);
             background-color: #f5f5f5;
             border-bottom-left-radius: 32px;
-            color: #333;
             height: 100%;
             overflow-x: hidden;
 

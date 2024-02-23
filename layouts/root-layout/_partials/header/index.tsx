@@ -92,7 +92,7 @@ export default function Header() {
             {links.map((link, index) => (
               <Link href={link.href} key={index} className="nav-link">
                 {t(
-                  `GLOBAL.PAGE_TITLES.${link.label.toLocaleUpperCase()}`
+                  `PAGE_TITLES.${link.label.toLocaleUpperCase()}`
                 ).toLocaleLowerCase()}
               </Link>
             ))}

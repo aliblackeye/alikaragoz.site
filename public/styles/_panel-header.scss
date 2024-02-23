@@ -1,0 +1,66 @@
+.header-left {
+    display: flex !important;
+    justify-content: flex-start;
+    visibility: visible;
+    gap: 24px;
+    opacity: 1;
+    flex: 1;
+    transition: opacity 0.2s ease-out;
+
+    @media (max-width:724px) {
+      display: none;
+      justify-content: space-between;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .nav-link {
+      color: white;
+      transition: color 0.2s ease-out;
+
+      &:hover {
+        color: #b3b3b3;
+      }
+    }
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .language-switch {
+      display: flex;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .dark-mode-wrapper {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .socials {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      a {
+        display: flex;
+        align-items: center;
+      }
+
+    }
+
+    .menu-icon {
+      /*  md:hidden active */
+      cursor: pointer;
+      display: none;
+
+      @media (max-width: 724px) {
+        display: flex;
+      }
+    }
+  }

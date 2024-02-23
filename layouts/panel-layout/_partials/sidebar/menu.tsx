@@ -7,8 +7,8 @@ export const MENU = [
     icon: <FiHome />,
   },
   {
-    label: "Editör",
-    href: "/panel/editor",
+    label: "İçerik Yönetimi",
+    href: "/panel/content-management",
     icon: <LuFileEdit />,
   },
 ];

@@ -14,15 +14,12 @@ export type SelectItemType = {
     label: string;
 }
 
-
 // children zorunlu olmamalı
 type MergedSelectProps = Omit<SelectProps, 'children'>;
 
 interface ISelectProps extends MergedSelectProps {
     items: SelectItemType[];
 }
-
-
 
 export default function Select(props: ISelectProps) {
 
@@ -39,7 +36,7 @@ export default function Select(props: ISelectProps) {
             placeholder={t(`${placeholder}`)}
             labelPlacement={labelPlacement}
             errorMessage={t(errorMessage)}
-            className={`pawder-select ${className}`}
+            className={`nextui-select ${className}`}
         >
             {items?.map((item) => (
                 <SelectItem key={item.key} value={item.value}>

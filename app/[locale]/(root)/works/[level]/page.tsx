@@ -37,8 +37,8 @@ export default function WorkPage(props: IWorkPageProps) {
     >
       <Container className="works-page-container">
         <PageInfo
-          title={t(`GLOBAL.PAGE_CONTENTS.WORKS.TITLE`)}
-          description={t(`GLOBAL.PAGE_CONTENTS.WORKS.DESCRIPTION`)}
+          title={t(`PAGE_CONTENTS.WORKS.TITLE`)}
+          description={t(`PAGE_CONTENTS.WORKS.DESCRIPTION`)}
         />
 
         <div className="levels">

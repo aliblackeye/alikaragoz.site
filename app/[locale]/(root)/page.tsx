@@ -32,22 +32,22 @@ export default function Home() {
             <div className="profile-image">
               <Image
                 src={`${photo}`}
-                alt={t("GLOBAL.PAGE_CONTENTS.HOME.TITLE")}
+                alt={t("PAGE_CONTENTS.HOME.TITLE")}
                 width={1920}
                 height={1080}
               />
             </div>
             <div className="name-and-bio">
               <h1 className="profile-name">
-                {t("GLOBAL.PAGE_CONTENTS.HOME.FULLNAME")}
+                {t("PAGE_CONTENTS.HOME.FULLNAME")}
               </h1>
               <span className="profile-bio">
-                {t("GLOBAL.PAGE_CONTENTS.HOME.TITLE")}
+                {t("PAGE_CONTENTS.HOME.TITLE")}
               </span>
             </div>
           </div>
           <p className="profile-description">
-            {t("GLOBAL.PAGE_CONTENTS.HOME.DESCRIPTION")}
+            {t("PAGE_CONTENTS.HOME.DESCRIPTION")}
           </p>
         </div>
 
@@ -89,12 +89,12 @@ export default function Home() {
       </Swiper> 
       */}
         <Works
-          title={t("GLOBAL.COMPONENTS.WORKS.TITLES.MID_WORKS")}
+          title={t("COMPONENTS.WORKS.TITLES.MID_WORKS")}
           workItems={midProjects}
           href="/works/mid"
         />
         <Works
-          title={t("GLOBAL.COMPONENTS.WORKS.TITLES.JUNIOR_WORKS")}
+          title={t("COMPONENTS.WORKS.TITLES.JUNIOR_WORKS")}
           workItems={juniorProjects}
           href="/works/junior"
         />

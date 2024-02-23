@@ -23,7 +23,7 @@ export default function Input(props: IInputProps) {
         <NextInput
             {...props}
             name={name}
-            className={`pawder-input ${className}`}
+            className={`nextui-input ${className}`}
             label={t(label)}
             errorMessage={t(errorMessage)}
             placeholder={t(placeholder)}

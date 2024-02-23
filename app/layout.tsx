@@ -16,7 +16,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark text-foreground bg-background">
       <body className={`${fonts.satoshi.className}`}>{children}</body>
     </html>
   );

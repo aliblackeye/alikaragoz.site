@@ -2,7 +2,7 @@
     min-width: 300px;
     width: 300px;
     padding-top: 60px;
-    padding-inline: 20px;
+    padding-inline: 10px;
     transition: all 0.4s ease;
 
     .sidebar-items {
@@ -52,8 +52,8 @@
     }
 
     &.collapsed {
-        min-width: 89px;
-        width: 89px;
+        min-width: 69px;
+        width: 69px;
 
         .sidebar-items {
 
