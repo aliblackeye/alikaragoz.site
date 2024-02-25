@@ -15,9 +15,9 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
 
 import Table, { ColumnProps } from "@components/table";
+import Tooltip from "@components/tooltip";
 import Button from "@components/button";
 import Popover from "@components/popover";
-import Tooltip from "@components/tooltip";
 
 import "@styles/_content-management.scss";
 
@@ -80,7 +80,6 @@ export default function ContentManagement() {
               status={STATUS.SECONDARY}
             />
           </Tooltip>
-
           <Popover content={"dsgsdgsdg"} placement="top">
             <Tooltip content="sf">
               <Button
@@ -131,7 +130,6 @@ export default function ContentManagement() {
   return (
     <section className="content-management-section">
       <Table data={data} columns={columns} />
-
       <div>
         {works?.map((work, index) => (
           <div key={index}>

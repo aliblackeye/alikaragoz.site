@@ -11,16 +11,28 @@ interface IPopoverProps {
   children: any;
   content: any;
   placement?: "bottom" | "left" | "right" | "top";
+  showArrow?: boolean;
+  backdrop?: "opaque" | "blur" | "transparent";
 }
 
 export default function Popover(props: IPopoverProps) {
   // Props
-  const { children, content, placement = "left" } = props;
+  const {
+    children,
+    content,
+    placement = "left",
+    showArrow = true,
+    backdrop = "blur",
+  } = props;
 
   const t = useI18n() as any;
 
   return (
-    <NextPopover {...props} placement={placement}>
+    <NextPopover
+      placement={placement}
+      showArrow={showArrow}
+      backdrop={backdrop}
+    >
       <PopoverTrigger>{children}</PopoverTrigger>
       <PopoverContent>
         {typeof content === "string" ? t(content) : content}
