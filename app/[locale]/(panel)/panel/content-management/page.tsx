@@ -1,57 +1,61 @@
-"use client";
-import { useEffect, useState } from "react";
+'use client';
 
-import MDEditor, { commands } from "@uiw/react-md-editor";
+import { useEffect, useState } from 'react';
 
-import rehypeSanitize from "rehype-sanitize";
-import rehypeRaw from "rehype-raw";
-import remarkGfm from "remark-gfm";
-import { EditorAPI } from "@apis/EditorAPI";
-import Image from "next/image";
-import { STATUS } from "@interfaces/status";
+import Image from 'next/image';
 
-import { FiEdit } from "react-icons/fi";
-import { AiOutlineDelete } from "react-icons/ai";
-import { BsEye } from "react-icons/bs";
+import { EditorAPI } from '@apis/EditorAPI';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { BiPlus } from 'react-icons/bi';
+import { BsEye } from 'react-icons/bs';
+import { FiEdit } from 'react-icons/fi';
 
-import Table, { ColumnProps } from "@components/table";
-import Tooltip from "@components/tooltip";
-import Button from "@components/button";
-import Popover from "@components/popover";
+import STATUS from '@constants/status';
 
-import "@styles/_content-management.scss";
+import Button from '@components/button';
+import Popconfirm from '@components/popconfirm';
+import Table, { ColumnProps } from '@components/table';
+import Tooltip from '@components/tooltip';
+
+import ContentEditor from './_partials/ContentEditor';
+
+import '@styles/_content-management.scss';
 
 export default function ContentManagement() {
   // States
-  const [value, setValue] = useState("");
   const [works, setWorks] = useState([]);
+  const [visibleConfirmKey, setVisibleConfirmKey] = useState(null);
+  const [visible, setVisible] = useState(false);
+  const [work, setWork] = useState(null);
 
   // Functions
   const columns: ColumnProps[] = [
     {
-      dataIndex: "cover",
-      label: "COMPONENTS.TABLE.COLUMNS.LABELS.COVER",
-      render: (value) => (
-        <Image
-          src={value}
-          alt="cover"
-          width={1920}
-          height={1920}
-          className="work-cover-image"
-        />
-      ),
+      dataIndex: 'image',
+      label: 'COMPONENTS.TABLE.COLUMNS.LABELS.COVER',
+      render: (value) => {
+        return (
+          <Image
+            src={value}
+            alt="cover"
+            width={1920}
+            height={1920}
+            className="work-cover-image"
+          />
+        );
+      },
     },
     {
-      dataIndex: "title",
-      label: "COMPONENTS.TABLE.COLUMNS.LABELS.TITLE",
+      dataIndex: 'title',
+      label: 'COMPONENTS.TABLE.COLUMNS.LABELS.TITLE',
     },
     {
-      dataIndex: "description",
-      label: "COMPONENTS.TABLE.COLUMNS.LABELS.DESCRIPTION",
+      dataIndex: 'description',
+      label: 'COMPONENTS.TABLE.COLUMNS.LABELS.DESCRIPTION',
     },
     {
-      dataIndex: "views",
-      label: "COMPONENTS.TABLE.COLUMNS.LABELS.VIEWS",
+      dataIndex: 'views',
+      label: 'COMPONENTS.TABLE.COLUMNS.LABELS.VIEWS',
       render: (value) => (
         <div className="flex items-center gap-1">
           <span>{value}</span>
@@ -60,93 +64,105 @@ export default function ContentManagement() {
       ),
     },
     {
-      dataIndex: "actions",
-      label: "COMPONENTS.TABLE.COLUMNS.LABELS.ACTIONS",
-      render: () => (
-        <>
-          <Button
-            icon={<BsEye size={16} />}
-            onClick={() => {}}
-            size="sm"
-            className="mr-2"
-            status={STATUS.PRIMARY}
-          />
-          <Tooltip content="sf">
-            <Button
-              icon={<FiEdit size={16} />}
-              onClick={() => {}}
-              size="sm"
-              className="mr-2"
-              status={STATUS.SECONDARY}
-            />
-          </Tooltip>
-          <Popover content={"dsgsdgsdg"} placement="top">
-            <Tooltip content="sf">
-              <Button
-                icon={<AiOutlineDelete size={16} />}
-                onClick={() => {}}
-                size="sm"
-                status={STATUS.DANGER}
-              />
+      dataIndex: 'actions',
+      label: 'COMPONENTS.TABLE.COLUMNS.LABELS.ACTIONS',
+      render: (_value, row, index) => {
+        return (
+          <div className="flex gap-2">
+            <Tooltip content="Read">
+              <div>
+                <Button
+                  icon={<BsEye size={16} />}
+                  onClick={() => {
+                    window.open(window.location.origin + '/work/' + row.href);
+                  }}
+                  status={STATUS.PRIMARY}
+                />
+              </div>
             </Tooltip>
-          </Popover>
-        </>
-      ),
-    },
-  ];
 
-  const data = [
-    {
-      cover: "/images/mid-works/fake-for-me.png",
-      title: "Fake For Me",
-      description: "JsonGPT supported fake data generator.",
-      views: "325",
-    },
-    {
-      cover: "/images/mid-works/startup.png",
-      title: "Digital Hive",
-      description: "My startup company website.",
-      views: "254",
-    },
-    {
-      cover: "/images/mid-works/alypto-blockchain.png",
-      title: "Alypto Blockchain",
-      description: "Alypto Blockchain website.",
-      views: "125",
-    },
-    {
-      cover: "/images/mid-works/online-xox.png",
-      title: "Online XOX",
-      description: "An online XOX game. Also you can play offline.",
-      views: "90",
+            <Tooltip content="Edit">
+              <div>
+                <Button
+                  icon={<FiEdit size={16} />}
+                  onClick={() => {
+                    setWork(row);
+                    setVisible(true);
+                  }}
+                  status={STATUS.SECONDARY}
+                />
+              </div>
+            </Tooltip>
+
+            <Tooltip content="Delete">
+              <div>
+                <Popconfirm
+                  isOpen={visibleConfirmKey === index}
+                  label={'COMPONENTS.POPCONFIRM.DELETE'}
+                  onCancel={() => {
+                    setVisibleConfirmKey(null);
+                  }}
+                  onConfirm={() => {
+                    EditorAPI.delete(row.id).then((res) => {
+                      if (res?.data?.success) {
+                        EditorAPI.list().then((res) => {
+                          setWorks(res?.data?.data);
+                        });
+                      }
+                    });
+                    setVisibleConfirmKey(null);
+                  }}
+                >
+                  <div>
+                    <Button
+                      icon={<AiOutlineDelete size={16} />}
+                      onClick={() => {
+                        setVisibleConfirmKey(index);
+                      }}
+                      status={STATUS.DANGER}
+                    />
+                  </div>
+                </Popconfirm>
+              </div>
+            </Tooltip>
+          </div>
+        );
+      },
     },
   ];
 
   // Effects
   useEffect(() => {
-    EditorAPI.getAll().then((works) => setWorks(works?.data?.data));
+    EditorAPI.list().then((res) => {
+      setWorks(res?.data?.data);
+    });
   }, []);
 
   return (
     <section className="content-management-section">
-      <Table data={data} columns={columns} />
-      <div>
-        {works?.map((work, index) => (
-          <div key={index}>
-            <h3>{work.title}</h3>
-            <textarea value={work.content} />
-          </div>
-        ))}
-      </div>
-      <MDEditor
-        value={value}
-        onChange={setValue}
-        previewOptions={{
-          remarkPlugins: [[remarkGfm]],
-          rehypePlugins: [[rehypeSanitize, rehypeRaw]],
-        }}
+      <Table
+        data={works}
+        columns={columns}
+        tableHeader={
+          <>
+            <Button
+              label="FORM_ELEMENTS.CTA.ADD_NEW_WORK"
+              icon={<BiPlus size={16} />}
+              status={STATUS.PRIMARY}
+              onClick={() => {
+                setVisible(true);
+              }}
+            />
+          </>
+        }
       />
-      <MDEditor.Markdown source={value} style={{ whiteSpace: "pre-wrap" }} />
+
+      <ContentEditor
+        visible={visible}
+        work={work}
+        setVisible={setVisible}
+        setWork={setWork}
+      />
     </section>
   );
 }

@@ -1,19 +1,19 @@
-"use client";
-import { ReactNode } from "react";
+'use client';
+
+import { ReactNode } from 'react';
 
 // Libs
-import { useRouter } from "next/navigation";
-
-// Next UI
-import { Button as NextButton, ButtonProps } from "@nextui-org/button";
-
-// Interfaces
-import { STATUS } from "@interfaces/status";
+import { useRouter } from 'next/navigation';
 
 // Locales
-import { useI18n } from "@locales/client";
+import { useI18n } from '@locales/client';
+// Next UI
+import { ButtonProps, Button as NextButton } from '@nextui-org/button';
 
-import "@styles/_button.scss";
+// Interfaces
+import { STATUS } from '@constants/status';
+
+import '@styles/_button.scss';
 
 interface IButtonProps extends ButtonProps {
   label?: string;
@@ -35,6 +35,7 @@ export default function Button(props: IButtonProps) {
     icon,
     endIcon,
     radius,
+    size = 'sm',
     ...others
   } = props;
 
@@ -46,7 +47,8 @@ export default function Button(props: IButtonProps) {
   return (
     <NextButton
       {...others}
-      radius={"md" ?? radius}
+      size={size}
+      radius={'md' ?? radius}
       onClick={(e) => {
         if (href) {
           router.push(href);

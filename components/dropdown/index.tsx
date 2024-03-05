@@ -1,4 +1,4 @@
-import { STATUS } from "@interfaces/status";
+import { STATUS } from "@constants/status";
 import { Dropdown as NextDropdown, DropdownTrigger, DropdownMenu, DropdownItem, Selection, } from "@nextui-org/react";
 
 type DropdownItemType = {

@@ -8,3 +8,11 @@
 .work-views-icon {
     svg {}
 }
+
+.w-md-editor-fullscreen {
+    padding: 16px 32px;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}

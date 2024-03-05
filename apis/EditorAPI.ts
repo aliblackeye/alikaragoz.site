@@ -1,13 +1,15 @@
-"use client";
+'use client';
 
-import axios from "axios";
-import { defineCancelApiObject } from "./configs/axiosUtils";
+import api from './configs/axiosConfig';
+import { defineCancelApiObject } from './configs/axiosUtils';
 
 export const EditorAPI = {
-  getAll: async function () {
-    const response = await axios.get(
-      "https://fakefor.me/api/projects/works/getWorks"
-    );
+  list: async function () {
+    const response = await api.get('works/list');
+    return response;
+  },
+  delete: async function (id: string) {
+    const response = await api.delete(`works/delete/${id}`);
     return response;
   },
 };

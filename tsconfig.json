@@ -43,8 +43,11 @@
       "@utils/*": [
         "./common/utils/utils.ts"
       ],
-      "@interfaces/*": [
-        "./common/interfaces/*"
+      "@icons/*": [
+        "./public/icons/*"
+      ],
+      "@constants/*": [
+        "./common/constants/*"
       ],
     }
   },

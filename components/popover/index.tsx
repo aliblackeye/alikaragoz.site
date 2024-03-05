@@ -7,12 +7,14 @@ import {
   PopoverContent,
 } from "@nextui-org/react";
 
-interface IPopoverProps {
+export interface IPopoverProps {
   children: any;
   content: any;
   placement?: "bottom" | "left" | "right" | "top";
   showArrow?: boolean;
   backdrop?: "opaque" | "blur" | "transparent";
+  isOpen: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 export default function Popover(props: IPopoverProps) {
@@ -22,16 +24,20 @@ export default function Popover(props: IPopoverProps) {
     content,
     placement = "left",
     showArrow = true,
-    backdrop = "blur",
+    backdrop = "opaque",
+    isOpen,
+    onOpenChange,
   } = props;
 
   const t = useI18n() as any;
 
   return (
     <NextPopover
+      isOpen={isOpen}
       placement={placement}
       showArrow={showArrow}
       backdrop={backdrop}
+      onOpenChange={onOpenChange}
     >
       <PopoverTrigger>{children}</PopoverTrigger>
       <PopoverContent>

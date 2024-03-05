@@ -1,13 +1,13 @@
-"use client"
+'use client';
 
-import axios from "axios";
+import axios from 'axios';
 
 // initializing the axios instance with custom configs
 const api = axios.create({
   withCredentials: false,
-  baseURL: "https://fakefor.me/api",
+  baseURL: '/api',
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
