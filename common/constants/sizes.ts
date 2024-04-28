@@ -1,34 +1,36 @@
-export type SIZE =
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | '2xl'
-  | '3xl'
-  | '4xl'
-  | '5xl'
-  | '6xl'
-  | '7xl'
-  | '8xl';
+export enum SIZE {
+  XS = 6,
+  SM = 12,
+  MD = 16,
+  LG = 20,
+  XL = 24,
+  '2XL' = 32,
+  '3XL' = 40,
+  '4XL' = 48,
+  '5XL' = 56,
+  '6XL' = 64,
+  '7XL' = 72,
+  '8XL' = 80,
+}
 
-export type SIZES = {
-  [key in SIZE]: number;
-};
+export enum BUTTON_SIZE {
+  SM = 'sm',
+  MD = 'md',
+  LG = 'lg',
+  XL = 'xl',
+  '2XL' = '2xl',
+}
 
-const SIZES: SIZES = {
-  xs: 6,
-  sm: 12,
-  md: 16,
-  lg: 20,
-  xl: 24,
-  '2xl': 32,
-  '3xl': 40,
-  '4xl': 48,
-  '5xl': 56,
-  '6xl': 64,
-  '7xl': 72,
-  '8xl': 80,
-};
-
-export default SIZES;
+export enum FONT_SIZE {
+  DISPLAY_2XL = 'display-2xl',
+  DISPLAY_XL = 'display-xl',
+  DISPLAY_LG = 'display-lg',
+  DISPLAY_MD = 'display-md',
+  DISPLAY_SM = 'display-sm',
+  DISPLAY_XS = 'display-xs',
+  XL = 'text-xl',
+  LG = 'text-lg',
+  MD = 'text-md',
+  SM = 'text-sm',
+  XS = 'text-xs',
+}

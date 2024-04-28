@@ -1,35 +1,55 @@
-"use client";
+'use client';
 
 // Libs
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { useRef, useState } from 'react';
 
-// Locales
-import { useChangeLocale, useCurrentLocale, useI18n } from "@locales/client";
-
-// Icons
-import {
-  AiOutlineInstagram,
-  AiOutlineGithub,
-  AiOutlineLinkedin,
-  AiOutlineYoutube,
-  AiOutlineClose,
-} from "react-icons/ai";
-import { BsSunFill } from "react-icons/bs";
-import { FiMoon } from "react-icons/fi";
-import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import Image from 'next/image';
+import Link from 'next/link';
 
 // Data
-import { links, socials } from "../../../../data";
+import { socials } from '@api/works/user-details.json';
+// Locales
+import { useChangeLocale, useCurrentLocale, useI18n } from '@locales/client';
+// Icons
+import {
+  AiOutlineClose,
+  AiOutlineGithub,
+  AiOutlineInstagram,
+  AiOutlineLinkedin,
+  AiOutlineYoutube,
+} from 'react-icons/ai';
+import { BsSunFill } from 'react-icons/bs';
+import { FiMoon } from 'react-icons/fi';
+import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 
 // Components
-import Container from "@components/container";
+import Container from '@components/container';
 
 // Styles
-import "./styles.scss";
+import './styles.scss';
+
+import { useTheme } from 'next-themes';
+
+const links = [
+  {
+    href: '/',
+    label: 'home',
+  },
+  {
+    href: '/works/all',
+    label: 'works',
+  },
+
+  {
+    href: '/about',
+    label: 'about',
+  },
+];
 
 export default function Header() {
+  // Theme
+  const { theme, setTheme } = useTheme();
+
   // Locales
   const locale = useCurrentLocale();
   const changeLocale = useChangeLocale() as any;
@@ -39,50 +59,28 @@ export default function Header() {
   const navRef = useRef(null);
 
   // States
-  const [darkMode, setDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Functions
   const handleHamburgerMenu = () => {
     if (isMenuOpen) {
       setIsMenuOpen(false);
-      navRef.current.classList.remove("show-menu");
+      navRef.current.classList.remove('show-menu');
     }
     if (!isMenuOpen) {
       setIsMenuOpen(true);
-      navRef.current.classList.add("show-menu");
+      navRef.current.classList.add('show-menu');
     }
   };
 
   const handleChangeLocale = () => {
-    if (locale === "en") {
-      changeLocale("tr");
+    if (locale === 'en') {
+      changeLocale('tr');
     }
-    if (locale === "tr") {
-      changeLocale("en");
+    if (locale === 'tr') {
+      changeLocale('en');
     }
   };
-
-  // Effects
-  useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    if (theme === "dark") {
-      setDarkMode(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      document.documentElement.classList.remove("light");
-      localStorage.setItem("theme", "dark");
-    }
-    if (!darkMode) {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.classList.add("light");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
 
   return (
     <header className="header">
@@ -107,22 +105,26 @@ export default function Header() {
               />
             </div>
             <div
-              onClick={() => setDarkMode(!darkMode)}
+              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
               className="dark-mode-wrapper"
             >
-              {darkMode ? <FiMoon size={18} /> : <BsSunFill size={18} />}
+              {theme === 'dark' ? (
+                <FiMoon size={18} />
+              ) : (
+                <BsSunFill size={18} />
+              )}
             </div>
             <div className="socials">
               {socials.map((social, index) => (
                 <Link href={social.href} key={index} target="_blank">
-                  {social.label === "instagram" && (
+                  {social.label === 'instagram' && (
                     <AiOutlineInstagram size={18} />
                   )}
-                  {social.label === "github" && <AiOutlineGithub size={18} />}
-                  {social.label === "linkedin" && (
+                  {social.label === 'github' && <AiOutlineGithub size={18} />}
+                  {social.label === 'linkedin' && (
                     <AiOutlineLinkedin size={18} />
                   )}
-                  {social.label === "youtube" && <AiOutlineYoutube size={18} />}
+                  {social.label === 'youtube' && <AiOutlineYoutube size={18} />}
                 </Link>
               ))}
             </div>

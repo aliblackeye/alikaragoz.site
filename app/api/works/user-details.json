@@ -1,0 +1,20 @@
+{
+  "socials": [
+    {
+      "href": "https://www.instagram.com/aliblackeye/",
+      "label": "instagram"
+    },
+    {
+      "href": "https://www.github.com/aliblackeye/",
+      "label": "github"
+    },
+    {
+      "href": "https://www.linkedin.com/in/aliblackeye/",
+      "label": "linkedin"
+    },
+    {
+      "href": "https://www.youtube.com/aliblackeye/",
+      "label": "youtube"
+    }
+  ]
+}

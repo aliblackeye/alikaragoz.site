@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -22,42 +18,24 @@
       }
     ],
     "paths": {
-      "@styles/*": [
-        "./public/styles/*"
-      ],
-      "@components/*": [
-        "./components/*"
-      ],
-      "@layouts/*": [
-        "./layouts/*"
-      ],
-      "@fonts/*": [
-        "./common/fonts/*"
-      ],
-      "@locales/*": [
-        "./common/locales/*"
-      ],
-      "@apis/*": [
-        "./apis/*"
-      ],
-      "@utils/*": [
-        "./common/utils/utils.ts"
-      ],
-      "@icons/*": [
-        "./public/icons/*"
-      ],
-      "@constants/*": [
-        "./common/constants/*"
-      ],
+      "@api/*": ["./app/api/*"],
+      "@styles/*": ["./public/styles/*"],
+      "@components/*": ["./components/*"],
+      "@layouts/*": ["./layouts/*"],
+      "@fonts/*": ["./common/fonts/*"],
+      "@locales/*": ["./common/locales/*"],
+      "@apis/*": ["./apis/*"],
+      "@utils/*": ["./common/utils/*"],
+      "@icons/*": ["./public/icons/*"],
+      "@constants/*": ["./common/constants/*"],
+      "@templates/*": ["./templates/*"],
+      "@interfaces/*": ["./common/interfaces/*"],
+      "@configs/*": ["./common/configs/*"],
+      "@hooks/*": ["./common/hooks/*"],
+      "@images/*": ["./public/images/*"],
+      "@store/*": ["./store/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

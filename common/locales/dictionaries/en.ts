@@ -49,12 +49,15 @@ export default {
       CLOSE: 'Close',
       SUBMIT: 'Submit',
       ADD_NEW_WORK: 'Add New Work',
+      YES: 'Yes',
+      NO: 'No',
     },
     LABELS: {
       TITLE: 'Title',
       DESCRIPTION: 'Description',
       LINK: 'Link',
       IMAGE: 'Image',
+      CATEGORY: 'Category',
     },
   },
 

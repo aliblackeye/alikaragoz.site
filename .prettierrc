@@ -1,17 +1,17 @@
 {
   "endOfLine": "lf",
-  "tailwindConfig": "./tailwind.config.js",
+  "tailwindConfig": "./tailwind.config.ts",
   "tailwindFunctions": ["clsx", "twMerge"],
   "singleQuote": true,
   "trailingComma": "es5",
   "semi": true,
   "tabWidth": 2,
   "importOrder": [
+    "<BUILTIN_MODULES>",
+    "",
     "^(react/(.*)$)|^(react$)",
     "",
     "^(next/(.*)$)|^(next$)",
-    "",
-    "<BUILTIN_MODULES>",
     "",
     "<THIRD_PARTY_MODULES>",
     "",
@@ -36,7 +36,11 @@
     "",
     "^@layouts/(.*)$",
     "",
+    "^@templates/(.*)$",
+    "",
     "^@components/(.*)$",
+    "",
+    "^@interfaces/(.*)$",
     "",
     "^@partials/(.*)$",
     "",
@@ -50,7 +54,8 @@
     "jsx",
     "decorators-legacy",
     "^(?!.*[.]css$)[./].*$",
-    ".css$"
+    ".css$",
+    ".scss$"
   ],
   "plugins": [
     "@ianvs/prettier-plugin-sort-imports",

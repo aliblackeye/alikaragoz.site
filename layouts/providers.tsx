@@ -1,7 +1,9 @@
-"use client";
+'use client';
 
-import { I18nProviderClient } from "@locales/client";
-import { NextUIProvider } from "@nextui-org/react";
+import { I18nProviderClient } from '@locales/client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 export function Providers({
   children,
@@ -12,7 +14,7 @@ export function Providers({
 }) {
   return (
     <I18nProviderClient locale={locale} /* fallback={<p>Loading...</p>} */>
-      <NextUIProvider> {children}</NextUIProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </I18nProviderClient>
   );
 }

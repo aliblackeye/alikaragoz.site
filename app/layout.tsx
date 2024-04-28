@@ -1,13 +1,15 @@
 // Fonts
-import { fonts } from "@fonts/fonts";
+import { fonts } from '@fonts/fonts';
 
 // Styles
-import "swiper/css/bundle";
-import "@styles/globals.scss";
+import 'swiper/css/bundle';
+import '@styles/globals.scss';
+
+import { ThemeProvider } from '@layouts/theme-provider';
 
 export const metadata = {
-  title: "Ali Karagoz | Full Stack Developer",
-  description: "Full Stack Developer",
+  title: 'Ali Karagoz | Full Stack Developer',
+  description: 'Full Stack Developer',
 };
 
 export default function MainLayout({
@@ -16,8 +18,12 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark text-foreground bg-background">
-      <body className={`${fonts.satoshi.className}`}>{children}</body>
+    <html className="dark min-h-screen font-sans antialiased">
+      <body className={`${fonts.satoshi.className}`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

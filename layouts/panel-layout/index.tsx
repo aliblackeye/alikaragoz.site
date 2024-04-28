@@ -1,13 +1,14 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import "@styles/_panel-layout.scss";
-import { usePathname, useRouter } from "next/navigation";
+import '@styles/_panel-layout.scss';
 
+import { usePathname, useRouter } from 'next/navigation';
+
+import Header from '@layouts/panel-layout/_partials/header';
 // Components
-import Sidebar from "@layouts/panel-layout/_partials/sidebar";
-import Header from "@layouts/panel-layout/_partials/header";
+import Sidebar from '@layouts/panel-layout/_partials/sidebar';
 
 interface IPanelLayoutProps {
   children: React.ReactNode;
@@ -26,20 +27,14 @@ export default function PanelLayout(props: IPanelLayoutProps) {
 
   // Effects
   useEffect(() => {
-    // Tema işlemleri
-    const theme = localStorage.getItem("theme");
-    if (theme) {
-      document.documentElement.classList.add(theme);
-    }
-
     // Token işlemleri
-    const tokenFromStorage = localStorage.getItem("token");
+    const tokenFromStorage = localStorage.getItem('token');
     setToken(tokenFromStorage);
 
-    if (!tokenFromStorage && pathname !== "/panel-login") {
-      router.push("/panel-login");
-    } else if (tokenFromStorage && pathname === "/panel-login") {
-      router.push("/panel/dashboard");
+    if (!tokenFromStorage && pathname !== '/panel-login') {
+      router.push('/panel-login');
+    } else if (tokenFromStorage && pathname === '/panel-login') {
+      router.push('/panel/dashboard');
     }
   }, [pathname, router]);
 
@@ -55,7 +50,7 @@ export default function PanelLayout(props: IPanelLayoutProps) {
           isSidebarCollapsed={isSidebarCollapsed}
           setIsSidebarCollapsed={setIsSidebarCollapsed}
         />
-        <main className="panel-content">{children}</main>
+        <main className="panel-content bg-background">{children}</main>
       </div>
     </div>
   );
