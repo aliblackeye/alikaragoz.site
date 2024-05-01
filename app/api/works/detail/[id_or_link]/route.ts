@@ -1,8 +1,6 @@
-import fs from 'fs';
-
 import { NextRequest, NextResponse } from 'next/server';
 
-import works from '../../works.json';
+import works from '../../../../../db/works.json';
 
 export const GET = async (
   req: NextRequest,

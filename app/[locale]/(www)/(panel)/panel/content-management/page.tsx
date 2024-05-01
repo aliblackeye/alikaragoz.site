@@ -33,7 +33,7 @@ export default function ContentManagement() {
 
   // Fetchers
   const deleteFetcher = useFetcher(TYPES.DELETE_WORK).action();
-  const worksFetcher = useFetcher(TYPES.GET_WORKS_LIST).action();
+  const worksFetcher = useFetcher(TYPES.GET_WORKS_LIST).render();
 
   const columns = [
     {
@@ -106,8 +106,8 @@ export default function ContentManagement() {
               <Popconfirm
                 label={'COMPONENTS.POPCONFIRM.DELETE'}
                 onConfirm={() => {
-                  deleteFetcher.mutateAsync([undefined, []]).then(() => {
-                    fetchWorks();
+                  deleteFetcher.mutateAsync([undefined, [row?.id]]).then(() => {
+                    worksFetcher.refetch();
                   });
                 }}
               >
@@ -124,17 +124,12 @@ export default function ContentManagement() {
     },
   ];
 
-  // Functions
-  const fetchWorks = useCallback(() => {
-    worksFetcher.mutateAsync({}).then((res) => {
-      setWorks(res?.data?.data);
-    });
-  }, []);
-
   // Effects
   useEffect(() => {
-    fetchWorks();
-  }, []);
+    if (worksFetcher?.data?.data?.data) {
+      setWorks(worksFetcher.data.data?.data);
+    }
+  }, [worksFetcher?.data?.data?.data]);
 
   return (
     <section className="content-management-section">
@@ -142,6 +137,7 @@ export default function ContentManagement() {
         <Table
           data={works}
           columns={columns}
+          refetch={worksFetcher.refetch}
           tableHeader={
             <>
               <Button
@@ -151,6 +147,7 @@ export default function ContentManagement() {
                 }}
                 onClick={() => {
                   setVisible(true);
+                  setWork(null);
                 }}
               />
             </>
@@ -164,7 +161,7 @@ export default function ContentManagement() {
         work={work}
         setVisible={setVisible}
         setWork={setWork}
-        fetchWorks={fetchWorks}
+        fetchWorks={worksFetcher}
       />
     </section>
   );

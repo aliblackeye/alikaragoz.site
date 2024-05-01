@@ -4,6 +4,7 @@ import {
   useMutation as mutation,
   useQuery as query,
 } from '@tanstack/react-query';
+import axios from 'axios';
 
 import { API } from '@configs/apiConfig';
 import { TYPES } from '@configs/typesConfig';
@@ -20,6 +21,47 @@ import { createNotification } from '@utils/createNotification';
   });
 }; */
 
+axios.interceptors.request.use(
+  (config) => {
+    return Promise.resolve(config);
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      // logout
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+
+      /* errorHandler('UNAUTHORIZED'); */
+
+      createNotification({
+        title: 'Error',
+        description: 'You are unauthorized!',
+        status: 'danger',
+      });
+      /* window.location.href = '/login'; */
+    }
+
+    if (error.response.status === 500 || 502 || 503 || 504) {
+      createNotification({
+        title: 'Error',
+        description: 'An error occured on server!',
+        status: 'danger',
+      });
+    }
+
+    return Promise.reject(error);
+  }
+);
+
 // Eğer path içine parametre gönderiliyorsa eşleme için kullanılır
 const urlParser = (endpointUrl: string, pathParameters: string[]) => {
   if (!Array.isArray(pathParameters)) {
@@ -35,12 +77,12 @@ const urlParser = (endpointUrl: string, pathParameters: string[]) => {
   return endpointUrl;
 };
 
-function successHandler(notification: string = 'DEFAULT') {
+const successHandler = (notification: string = 'DEFAULT') => {
   const success = `GLOBAL.NOTIFICATIONS.SUCCESS.${notification}`;
   /*  createNotification(`${success}.TITLE`, `${success}.DESCRIPTION`, 'success');  */
-}
+};
 
-function errorHandler(notification: string = 'DEFAULT') {
+const errorHandler = (notification: string = 'DEFAULT') => {
   const error = `GLOBAL.NOTIFICATIONS.ERROR.${notification}`;
   /* createNotification(`${error}.TITLE`, `${error}.DESCRIPTION`, 'error');  */
   /*  createNotification(`Error`, `An error occured on server!`, 'error');  */
@@ -50,88 +92,43 @@ function errorHandler(notification: string = 'DEFAULT') {
     description: 'An error occured on server!',
     status: 'danger',
   });
-}
+};
 
 export async function fetchRequest(apiConfig: Omit<API, 'TYPE'>, data?: any) {
-  const { ERROR, METHOD, SUCCESS, URL, SERVICE } = apiConfig;
+  const { ERROR, METHOD, SUCCESS, URL, SERVICE, CONTENT_TYPE } = apiConfig;
+
+  /* const token = localStorage.getItem('token') */
+
+  // add /api prefix to all requests
+  const baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+  let inputUrl = `${baseURL}/${SERVICE}${URL}`;
+
+  const response = await axios.request({
+    baseURL: Array.isArray(data) ? urlParser(inputUrl, data?.[1]) : inputUrl,
+    method: METHOD,
+    data: Array.isArray(data) ? data?.[0] : data,
+    headers: {
+      'Content-Type': CONTENT_TYPE || 'application/json',
+      /* Authorization: `Bearer ${token}`, */
+    },
+  });
 
   try {
-    /* const token = localStorage.getItem('token') */
+    const { data: resData } = response;
 
-    // add /api prefix to all requests
-    const baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}`;
-    let inputUrl = `${baseURL}/${SERVICE}${URL}`;
-
-    if (apiConfig.METHOD === 'GET' && !Array.isArray(data) && data) {
-      const queryParams = new URLSearchParams(data).toString();
-      inputUrl += `?${queryParams}`;
-    }
-
-    const headers = {
-      'Content-Type': apiConfig?.CONTENT_TYPE || 'application/json',
-      /* Authorization: `Bearer ${token}`, */
-    };
-
-    const res = await fetch(
-      Array.isArray(data) ? urlParser(inputUrl, data?.[1]) : inputUrl,
-      {
-        method: METHOD,
-        headers,
-        body:
-          METHOD === 'GET'
-            ? undefined
-            : Array.isArray(data)
-              ? JSON.stringify(data?.[0])
-              : JSON.stringify(data),
-      }
-    );
-
-    if (!res.ok) {
-      // 401
-      switch (res.status) {
-        case 401:
-          // logout
-          /* errorHandler('UNAUTHORIZED'); */
-          localStorage.removeItem('user');
-          localStorage.removeItem('token');
-
-          createNotification({
-            title: 'Error',
-            description: 'You are unauthorized!',
-            status: 'danger',
-          });
-          /* window.location.href = '/login'; */
-          break;
-
-        case 500 || 502 || 503 || 504:
-          createNotification({
-            title: 'Error',
-            description: 'An error occured on server!',
-            status: 'danger',
-          });
-          break;
-      }
-
-      // hatayı throw et ve catch bloğuna git
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
-
-    const responseData = await res.json();
-
-    if (responseData.success) {
+    if (resData?.data?.success) {
       SUCCESS && successHandler(data?.notification);
     }
 
-    if (!responseData.success) {
+    if (!resData?.data?.success) {
       ERROR && errorHandler(data?.notification);
     }
 
     return {
-      response: res,
-      data: responseData,
+      response,
+      data: response.data,
     };
   } catch (error) {
-    console.error(error);
     ERROR && errorHandler();
     return Promise.reject(error);
   }

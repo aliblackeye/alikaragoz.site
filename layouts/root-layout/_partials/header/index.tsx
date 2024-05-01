@@ -6,11 +6,7 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Data
-import { socials } from '@api/works/user-details.json';
-// Locales
 import { useChangeLocale, useCurrentLocale, useI18n } from '@locales/client';
-// Icons
 import {
   AiOutlineClose,
   AiOutlineGithub,
@@ -25,6 +21,7 @@ import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 // Components
 import Container from '@components/container';
 
+import { socials } from '../../../../db/user-details.json';
 // Styles
 import './styles.scss';
 

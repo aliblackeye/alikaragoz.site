@@ -10,7 +10,11 @@ import {
 
 import { useI18n } from '@locales/client';
 
+import ICONS from '@constants/icons';
+
 import { cn } from '@utils/cn';
+
+import { Button } from './form-elements/button';
 
 const TableComp = forwardRef<
   HTMLTableElement,
@@ -128,17 +132,29 @@ interface ITableProps {
   columns: ColumnProps[];
   tableHeader?: ReactNode;
   tableFooter?: ReactNode;
+  refetch?: () => void;
+  loading?: boolean;
 }
 
 const Table = (props: ITableProps) => {
   const t = useI18n() as any;
 
-  const { caption, data, columns, tableHeader, tableFooter } = props;
+  const { caption, data, columns, tableHeader, tableFooter, refetch, loading } =
+    props;
 
   return (
     <div className="table-wrapper">
       {tableHeader && (
-        <div className={cn('table-header-wrapper', 'flex w-full justify-end')}>
+        <div
+          className={cn('table-header-wrapper', 'mb-4 flex w-full justify-end')}
+        >
+          {refetch && (
+            <Button
+              onClick={null ?? refetch}
+              className="mr-2"
+              icon={{ iconType: ICONS.REFRESH }}
+            />
+          )}
           {tableHeader}
         </div>
       )}
@@ -147,7 +163,7 @@ const Table = (props: ITableProps) => {
 
         <TableHeader>
           <TableRow>
-            {columns.map((column) => (
+            {columns?.map((column) => (
               <TableHead
                 key={column.dataIndex}
                 style={{
@@ -162,7 +178,9 @@ const Table = (props: ITableProps) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((record, index) => (
+          {loading && <span>Loading</span>}
+
+          {(data || [])?.map((record, index) => (
             <TableRow key={index}>
               {columns.map((column) => (
                 <TableCell key={column.dataIndex}>

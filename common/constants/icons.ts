@@ -1,6 +1,7 @@
 // React Icons
 import { AiFillCloseCircle, AiFillCloseSquare } from 'react-icons/ai';
 import { BiBell, BiCog, BiCopy, BiPlus, BiSupport } from 'react-icons/bi';
+import { BsEye } from 'react-icons/bs';
 import { CgMenuLeft, CgMenuRight, CgProfile, CgSpinner } from 'react-icons/cg';
 import { CiFileOn, CiImageOn } from 'react-icons/ci';
 import {
@@ -18,6 +19,7 @@ import {
   FiHelpCircle,
   FiInfo,
   FiLogOut,
+  FiRefreshCcw,
   FiSettings,
   FiTrash,
   FiTrash2,
@@ -71,15 +73,10 @@ import {
 } from 'react-icons/rx';
 import { TbBulb, TbMessageQuestion } from 'react-icons/tb';
 import { TiTicket } from 'react-icons/ti';
-import { VscChromeMinimize } from 'react-icons/vsc';
+import { VscChromeMinimize, VscSend } from 'react-icons/vsc';
 
 import EN_FLAG from '@icons/EN';
 import TR_FLAG from '@icons/TR';
-
-import 'react-icons/ti';
-
-import { BsEye } from 'react-icons/bs';
-import { VscSend } from 'react-icons/vsc';
 
 const CUSTOM_ICONS = {
   TR: TR_FLAG,
@@ -161,6 +158,7 @@ const ICONS = {
   EDIT: FiEdit2,
   DELETE: FiTrash,
   PLUS: BiPlus,
+  REFRESH: FiRefreshCcw,
 };
 
 export default ICONS;

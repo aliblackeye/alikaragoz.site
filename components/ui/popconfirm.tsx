@@ -2,6 +2,8 @@
 
 import { ReactNode, useState } from 'react';
 
+import { useI18n } from '@locales/client';
+
 import { cn } from '@utils/cn';
 
 import { Button } from './form-elements/button';
@@ -19,6 +21,8 @@ export function Popconfirm(props: IPopconfirmProps) {
 
   const [show, setShow] = useState(false);
 
+  const t = useI18n() as any;
+
   return (
     <Popover
       align="center"
@@ -29,7 +33,7 @@ export function Popconfirm(props: IPopconfirmProps) {
       }}
       content={
         <div className="space-y-2">
-          <p className={cn('popconfirm-label', 'font-medium')}>{label}</p>
+          <p className={cn('popconfirm-label', 'font-medium')}>{t(label)}</p>
 
           <div
             className={cn('popconfirm-actions', 'flex', 'justify-end', 'gap-2')}

@@ -57,6 +57,10 @@ export default {
       LINK: 'Link',
       IMAGE: 'Resim',
       CATEGORY: 'Kategori',
+      CONTENT: 'İçerik',
+    },
+    PLACEHOLDERS: {
+      SELECT_IMAGE: 'Resim Seç',
     },
   },
 

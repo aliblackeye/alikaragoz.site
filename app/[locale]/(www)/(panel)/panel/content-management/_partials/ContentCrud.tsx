@@ -1,9 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { UseQueryResult } from '@tanstack/react-query';
 import MDEditor from '@uiw/react-md-editor';
+import { AxiosResponse } from 'axios';
 import { useForm } from 'react-hook-form';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
@@ -14,6 +16,7 @@ import { useFetcher } from '@hooks/use-fetcher';
 
 import { TYPES } from '@configs/typesConfig';
 
+import { FILE_TYPES } from '@constants/file-types';
 import { BUTTON_SIZE } from '@constants/sizes';
 
 import { Dialog } from '@components/ui/dialog';
@@ -34,24 +37,29 @@ interface IContentCrudProps {
   setWork: (work: any) => void;
   visible: boolean;
   setVisible: (visible: boolean) => void;
-  fetchWorks: () => void;
+  fetchWorks: UseQueryResult<
+    {
+      response: AxiosResponse<any, any>;
+      data: any;
+    },
+    Error
+  >;
 }
-
 const formSchema = z.object({
-  title: z.string().min(3, 'This field is required!').max(50),
-  description: z.string().min(3, 'This field is required!').max(100),
+  title: z.string({ message: 'This field is required!' }).min(3).max(50),
+  description: z.string().min(3).max(100),
   href: z
-    .string()
-    .min(3, 'This field is required!')
+    .string({ message: 'This field is required!' })
+    .min(3)
     .max(50)
     .refine((value) => {
       // sadece harf, tire ve sayı içerebilir
       return /^[a-zA-Z0-9-]*$/.test(value);
     }),
-  image: z.any().refine((value) => {
-    return typeof value === 'string' || value === null;
-  }),
-  content: z.string().min(3, 'This field is required!'),
+
+  // file tipinde veya url olabilir
+  image: z.any(),
+  content: z.string({ message: 'This field is required!' }).min(3),
   category: z.string().refine(
     (value) => {
       return ['Junior', 'Mid', 'Lead', 'Senior'].includes(value);
@@ -73,59 +81,56 @@ const categories = [
 
 export default function ContentCrud(props: IContentCrudProps) {
   // Props
-  const { work, setWork, visible, setVisible } = props;
+  const { work, setWork, visible, setVisible, fetchWorks } = props;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: '',
-      description: '',
-      href: '',
-      image: '',
-      content: '',
-      category: '',
+      title: work?.title,
+      description: work?.description,
+      href: work?.href,
+      image: work?.image,
+      content: work?.content,
+      category: work?.category,
     },
   });
 
+  // States
+  const [file, setFile] = useState<File | null>(null);
+
   // Fetchers
-  const worksFetcher = useFetcher(TYPES.GET_WORKS_LIST).action();
-  const updateFetcher = useFetcher(TYPES.PUT_WORK_UPDATE).action();
+  const updateContent = useFetcher(TYPES.PUT_WORK_UPDATE).action();
+  const createContent = useFetcher(TYPES.POST_WORK_CREATE).action();
 
   // Functions
   const handleClose = () => {
     setWork(null);
     setVisible(false);
+    setFile(null);
     form.reset();
   };
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    if (work?.id) {
-      updateFetcher.mutateAsync([values, [work?.id]]).then(() => {
-        worksFetcher.mutateAsync({});
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const formData = new FormData();
+    formData.append('title', values.title);
+    formData.append('description', values.description);
+    formData.append('href', values.href);
+    formData.append('content', values.content);
+    formData.append('image', file || values.image);
+    formData.append('category', values.category);
 
+    if (work?.id) {
+      updateContent.mutateAsync([formData, [work?.id]]).then(() => {
+        fetchWorks.refetch();
         handleClose();
       });
     } else {
-      updateFetcher.mutateAsync(values).then(() => {
-        worksFetcher.mutateAsync({});
+      createContent.mutateAsync(formData).then((res) => {
         handleClose();
+        fetchWorks.refetch();
       });
     }
   };
-
-  useEffect(() => {
-    // set form values
-    if (work?.id) {
-      form.reset({
-        title: work.title,
-        description: work.description,
-        href: work.href,
-        image: work.image,
-        content: work.content,
-        category: work.category,
-      });
-    }
-  }, []);
 
   return (
     <>
@@ -137,12 +142,12 @@ export default function ContentCrud(props: IContentCrudProps) {
           setVisible(open);
 
           if (!open) {
-            setWork(null);
+            handleClose();
           }
         }}
       >
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
             <FormField
               control={form.control}
               name="title"
@@ -190,7 +195,11 @@ export default function ContentCrud(props: IContentCrudProps) {
                 <FormItem>
                   <FormLabel>FORM_ELEMENTS.LABELS.CATEGORY</FormLabel>
                   <FormControl>
-                    <Select {...field} groups={categories} />
+                    <Select
+                      {...field}
+                      onChange={field.onChange}
+                      groups={categories}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -199,16 +208,44 @@ export default function ContentCrud(props: IContentCrudProps) {
             <FormField
               control={form.control}
               name="image"
-              render={({ field: { name, value } }) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>FORM_ELEMENTS.LABELS.IMAGE</FormLabel>
                   <FormControl>
                     <Input
-                      name={name}
-                      value={typeof value === 'string' ? null : value}
+                      {...field}
+                      label={`FORM_ELEMENTS.LABELS.IMAGE`}
+                      placeholder={`FORM_ELEMENTS.PLACEHOLDERS.SELECT_IMAGE`}
+                      value={(() => {
+                        console.log('work?.id', work?.id);
+                        console.log('file?.name', file?.name);
+                        console.log('field?.value', field?.value);
+                        console.log(
+                          'değer:',
+                          work?.id && file?.name
+                            ? file
+                            : field.value.startsWith('/')
+                              ? ''
+                              : field.value
+                        );
+                        return work?.id && file?.name
+                          ? field.value
+                          : field.value.startsWith('/')
+                            ? ''
+                            : field.value;
+                      })()}
+                      onChange={(e) => {
+                        setFile(e.target.files[0]);
+
+                        console.log(e);
+                        field.onChange(e);
+                      }}
                       type="file"
-                      accept=".png, .jpeg, .jpg"
-                      required={!work?.id}
+                      fileTypes={[
+                        FILE_TYPES.JPG,
+                        FILE_TYPES.PNG,
+                        FILE_TYPES.JPEG,
+                      ]}
                     />
                   </FormControl>
                   <FormMessage />
@@ -221,7 +258,7 @@ export default function ContentCrud(props: IContentCrudProps) {
               name="content"
               render={({ field: { value, onChange } }) => (
                 <FormItem>
-                  <FormLabel />
+                  <FormLabel>FORM_ELEMENTS.LABELS.CONTENT</FormLabel>
                   <FormControl>
                     <MDEditor
                       onChange={onChange}

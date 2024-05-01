@@ -1,7 +1,7 @@
 // Libs
 import Link from 'next/link';
 
-import { socials } from '@api/works/user-details.json';
+import { socials } from '../../../../db/user-details.json';
 
 import './styles.scss';
 
