@@ -8,7 +8,7 @@ import { STATUS } from '@constants/status';
 import { cn } from '@utils/cn';
 
 const cardVariants = cva(
-  'orbina-ui-card rounded-[10px] p-4 text-card-foreground shadow-sm',
+  'shadcn-ui-card rounded-[10px] p-4 text-card-foreground shadow-sm',
   {
     variants: {
       status: {

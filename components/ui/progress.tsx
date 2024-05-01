@@ -44,7 +44,7 @@ const Progress = React.forwardRef<
   <ProgressPrimitive.Root
     ref={ref}
     className={cn(
-      'orbina-ui-progress relative h-2 w-full overflow-hidden rounded-full bg-gray-200',
+      'shadcn-ui-progress relative h-2 w-full overflow-hidden rounded-full bg-gray-200',
       { className }
     )}
     {...props}

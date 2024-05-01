@@ -6,15 +6,28 @@ import {
   ReactNode,
   TdHTMLAttributes,
   ThHTMLAttributes,
+  useCallback,
+  useMemo,
 } from 'react';
 
 import { useI18n } from '@locales/client';
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
 
+import { COLORS } from '@constants/colors';
 import ICONS from '@constants/icons';
+import { FONT_SIZE } from '@constants/sizes';
+import { BUTTON_STATUS, STATUS } from '@constants/status';
+import { WEIGHT } from '@constants/weight';
 
 import { cn } from '@utils/cn';
 
 import { Button } from './form-elements/button';
+import { Text } from './text';
 
 const TableComp = forwardRef<
   HTMLTableElement,
@@ -119,78 +132,161 @@ const TableCaption = forwardRef<
 ));
 TableCaption.displayName = 'TableCaption';
 
-export type ColumnProps = {
-  label: string;
-  dataIndex: string;
-  width?: number | string;
-  render?: (text: any, record: any, index: number) => ReactNode;
-};
-
-interface ITableProps {
+interface ITableProps<TData, TValue> {
   caption?: string;
   data: any[];
-  columns: ColumnProps[];
+  columns: ColumnDef<TData, TValue>[];
   tableHeader?: ReactNode;
   tableFooter?: ReactNode;
   refetch?: () => void;
   loading?: boolean;
+  dataUpdatedAt?: number;
+  title?: string;
 }
 
-const Table = (props: ITableProps) => {
+const Table = <TData, TValue>(props: ITableProps<TData, TValue>) => {
+  const {
+    caption,
+    data,
+    columns,
+    tableHeader,
+    tableFooter,
+    refetch,
+    loading,
+    dataUpdatedAt,
+    title,
+  } = props;
+
+  // Variables
   const t = useI18n() as any;
 
-  const { caption, data, columns, tableHeader, tableFooter, refetch, loading } =
-    props;
+  const tableColumns = useMemo(
+    () =>
+      columns.map((column) => {
+        return {
+          ...column,
+          header:
+            typeof column.header === 'string'
+              ? t(column.header)
+              : column.header,
+        };
+      }),
+    []
+  ) as ColumnDef<TData, TValue>[];
+
+  const table = useReactTable({
+    data,
+    columns: tableColumns,
+    getCoreRowModel: getCoreRowModel(),
+  });
 
   return (
     <div className="table-wrapper">
       {tableHeader && (
         <div
-          className={cn('table-header-wrapper', 'mb-4 flex w-full justify-end')}
-        >
-          {refetch && (
-            <Button
-              onClick={null ?? refetch}
-              className="mr-2"
-              icon={{ iconType: ICONS.REFRESH }}
-            />
+          className={cn(
+            'table-header-wrapper',
+            'mb-4 flex w-full justify-between'
           )}
-          {tableHeader}
+        >
+          <div>
+            <Text
+              element="span"
+              size={FONT_SIZE.XS}
+              weight={WEIGHT.MEDIUM}
+              color={COLORS.gray[400]}
+            >
+              {title}
+            </Text>
+          </div>
+          <div className="flex w-fit">
+            {dataUpdatedAt && (
+              <div className="mr-2 flex flex-col text-end">
+                <Text
+                  element="span"
+                  size={FONT_SIZE.XS}
+                  weight={WEIGHT.MEDIUM}
+                  color={COLORS.gray[400]}
+                >
+                  {t('COMPONENTS.TABLE.LAST_UPDATED')}
+                </Text>
+                <div className="flex gap-1">
+                  <Text
+                    element="span"
+                    size={FONT_SIZE.XS}
+                    weight={WEIGHT.MEDIUM}
+                    color={COLORS.gray[400]}
+                  >
+                    {new Date(dataUpdatedAt).toLocaleString().split(' ')[1]}
+                  </Text>
+                  <Text
+                    element="span"
+                    size={FONT_SIZE.XS}
+                    weight={WEIGHT.MEDIUM}
+                    color={COLORS.gray[400]}
+                  >
+                    {new Date(dataUpdatedAt).toLocaleString().split(' ')[0]}
+                  </Text>
+                </div>
+              </div>
+            )}
+            {refetch && (
+              <div className="refetch-wrapper flex justify-end">
+                <Button
+                  onClick={refetch}
+                  className="mr-2"
+                  status={BUTTON_STATUS.TERTIARY}
+                  loading={loading}
+                  icon={{ iconType: ICONS.REFRESH, status: STATUS.PRIMARY }}
+                />
+              </div>
+            )}
+            {tableHeader}
+          </div>
         </div>
       )}
       <TableComp>
         {caption && <TableCaption>{caption}</TableCaption>}
 
         <TableHeader>
-          <TableRow>
-            {columns?.map((column) => (
-              <TableHead
-                key={column.dataIndex}
-                style={{
-                  minWidth: column.width,
-                  width: column.width,
-                }}
-              >
-                {t(column.label) ??
-                  column.render(undefined, undefined, undefined)}
-              </TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {loading && <span>Loading</span>}
-
-          {(data || [])?.map((record, index) => (
-            <TableRow key={index}>
-              {columns.map((column) => (
-                <TableCell key={column.dataIndex}>
-                  {column.render
-                    ? column.render(record[column.dataIndex], record, index)
-                    : record[column.dataIndex]}
-                </TableCell>
-              ))}
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                );
+              })}
             </TableRow>
           ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows?.length ? (
+            table.getRowModel().rows.map((row) => (
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && 'selected'}
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={columns.length} className="h-24 text-center">
+                No results.
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </TableComp>
       <div className={cn('table-footer-wrapper', 'flex w-full justify-end')}>
@@ -202,11 +298,12 @@ const Table = (props: ITableProps) => {
 
 export {
   Table,
+  TableComp,
   TableHeader,
   TableBody,
   TableFooter,
-  TableHead,
   TableRow,
+  TableHead,
   TableCell,
   TableCaption,
 };

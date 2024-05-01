@@ -14,7 +14,7 @@ import { cn } from '@utils/cn';
 
 import { Icon } from '@components/ui/icon';
 
-const buttonVariants = (iconButton: boolean) => {
+const buttonVariants = (iconButton: boolean, status: BUTTON_STATUS) => {
   const variants = cva(
     `shadcn-button inline-flex items-center justify-center w-min whitespace-nowrap rounded-md text-sm font-medium general-transition ring-offset-primary-300 leading-5 border focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-primary-100 focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-50 font-semibold shadow-[0px_1px_2px_0px_var(--shadow)] ${iconButton ? 'min-w-[36px] min-h-[36px]' : ''}`,
     {
@@ -31,7 +31,6 @@ const buttonVariants = (iconButton: boolean) => {
           success:
             'bg-success-600 border-success-600 text-white hover:bg-success-700',
           info: 'bg-blue-light-500 text-white hover:bg-blue-light-600',
-          link: 'text-primary underline-offset-4 hover:underline',
           text: 'text-black hover:text-primary-600',
           black: 'bg-gray-800 text-white hover:bg-gray-900',
           white: 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50',
@@ -44,6 +43,7 @@ const buttonVariants = (iconButton: boolean) => {
           solid: '',
           outline: '',
           ghost: 'bg-transparent border-transparent shadow-none',
+          link: `general-transition underline-offset-4 underline-${status}-600 bg-transparent hover:bg-transparent border-none !p-0 hover:underline text-${status}-600`,
         },
         size: {
           sm: `h-9 py-[8px] px-[14px] ${iconButton ? 'p-[8px]' : ''}`,
@@ -92,7 +92,7 @@ type ButtonTypes = React.ButtonHTMLAttributes<HTMLButtonElement> &
 export interface ButtonProps extends ButtonTypes {
   label?: string;
   status?: BUTTON_STATUS;
-  variant?: 'outline' | 'solid' | 'ghost';
+  variant?: 'outline' | 'solid' | 'ghost' | 'link';
   icon?: {
     iconType: IconType;
     status?: STATUS;
@@ -141,7 +141,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <>
         <button
           className={cn(
-            buttonVariants(!label && icon ? true : false)({
+            buttonVariants(
+              !label && icon ? true : false,
+              status
+            )({
               variant,
               size,
               status,

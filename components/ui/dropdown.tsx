@@ -202,7 +202,7 @@ interface IDropdownMenuProps {
   }[];
 }
 
-const DropdownMenu = (props: IDropdownMenuProps) => {
+const Dropdown = (props: IDropdownMenuProps) => {
   const { children, items } = props;
 
   return (
@@ -227,4 +227,4 @@ const DropdownMenu = (props: IDropdownMenuProps) => {
   );
 };
 
-export { DropdownMenu };
+export { Dropdown };

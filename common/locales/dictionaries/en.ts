@@ -2,6 +2,7 @@ export default {
   COMPONENTS: {
     TABLE: {
       EMPTY_CONTENT: 'No data to display.',
+      LAST_UPDATED: 'Last Updated',
       COLUMNS: {
         LABELS: {
           ACTIONS: 'Actions',
@@ -13,8 +14,12 @@ export default {
       },
     },
     POPCONFIRM: {
-      SURE: 'Are you sure?',
-      DELETE: 'Are you sure you want to delete?',
+      DEFAULT_TITLE: 'Confirm the action',
+      DEFAULT_DESCRIPTION:
+        'You cannot undo this action. Are you sure you want to continue?',
+      DELETE_WORK_TITLE: 'Confirm the action',
+      DELETE_WORK_DESCRIPTION:
+        'You cannot undo this action. Are you sure you want to continue?',
     },
     WORKS: {
       TITLES: {
@@ -61,7 +66,8 @@ export default {
       CONTENT: 'Content',
     },
     PLACEHOLDERS: {
-      SELECT_IMAGE: 'Resim Seç',
+      SELECT_IMAGE: 'Select Image',
+      NO_FILE_SELECTED: 'No file selected',
     },
   },
 

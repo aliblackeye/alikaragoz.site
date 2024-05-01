@@ -1,14 +1,30 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import { fontFamily } from 'tailwindcss/defaultTheme';
+
+import type { Config } from 'tailwindcss';
+
+// ? Renkleri dinamik olarak oluşturmak için kullanılan fonksiyon. CSS tanımları olmazsa renkler çalışmaz.
+import { colorSchemaGenerator } from './common/utils/colorSchemaGenerator';
+
+// ? Renkleri css'ten aldığımız için sabitleri kullanmamıza gerek kalmıyor.
+/* import { COLORS } from './common/constants/colors'; */
+
+const config = {
+  darkMode: ['class'],
+
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './layouts/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './templates/**/*.{js,ts,jsx,tsx,mdx}',
+    './layouts/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   prefix: '',
   theme: {
+    screens: {
+      sm: '375px',
+      md: '768px',
+      lg: '1280px',
+      xl: '1440px',
+    },
     container: {
       center: true,
       padding: '2rem',
@@ -17,20 +33,32 @@ module.exports = {
       },
     },
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#333',
+            h1: {
+              fontSize: '32px',
+              fontWeight: '700',
+            },
+            h2: {
+              fontSize: '28px',
+              fontWeight: '600',
+            },
+            // Diğer özelleştirmeler...
+          },
+        },
+      },
+      fontFamily: {
+        sans: ['var(--font-sans)', ...fontFamily.sans],
+      },
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
+        // ? Renkleri css'ten aldığımız için sabitleri kullanmamıza gerek kalmıyor.
+        /* ...COLORS, */
+        white: 'hsl(var(--white))',
+        black: 'hsl(var(--black))',
+        shadow: 'hsl(var(--shadow))',
+        ...colorSchemaGenerator(),
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
@@ -51,6 +79,11 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -58,6 +91,10 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -68,10 +105,13 @@ module.exports = {
         },
       },
       animation: {
+        'spin-slow': 'spin 2s linear infinite',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
-};
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+} satisfies Config;
+
+export default config;

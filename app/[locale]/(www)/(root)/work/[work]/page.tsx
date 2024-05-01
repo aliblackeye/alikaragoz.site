@@ -119,7 +119,6 @@ export default function Work(props: IWorkProps) {
                 ...work,
                 content: e.target.value,
               });
-              console.log(work?.content);
             }}
           />
         )}

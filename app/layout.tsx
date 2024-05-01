@@ -1,6 +1,8 @@
 // Fonts
 import { fonts } from '@fonts/fonts';
 
+import { Toaster } from '@components/ui/toaster';
+
 // Styles
 import 'swiper/css/bundle';
 import '@styles/globals.scss';
@@ -22,6 +24,7 @@ export default function MainLayout({
       <body className={`${fonts.satoshi.className}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

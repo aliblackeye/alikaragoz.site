@@ -2,6 +2,7 @@ export default {
   COMPONENTS: {
     TABLE: {
       EMPTY_CONTENT: 'Gösterilecek veri yok.',
+      LAST_UPDATED: 'Son Güncelleme',
       COLUMNS: {
         LABELS: {
           ACTIONS: 'Aksiyonlar',
@@ -13,8 +14,12 @@ export default {
       },
     },
     POPCONFIRM: {
-      SURE: 'Emin misiniz?',
-      DELETE: 'Silmek istediğinizden emin misiniz?',
+      DEFAULT_TITLE: 'İşlemi onayla',
+      DEFAULT_DESCRIPTION:
+        'Bu işlemi geri alamazsınız. Devam etmek istediğinize emin misiniz?',
+      DELETE_WORK_TITLE: 'Çalışmayı sil',
+      DELETE_WORK_DESCRIPTION:
+        'Bu işlemi geri alamazsınız. Çalışmayı silmek istediğinize emin misiniz?',
     },
     WORKS: {
       TITLES: {
@@ -61,6 +66,7 @@ export default {
     },
     PLACEHOLDERS: {
       SELECT_IMAGE: 'Resim Seç',
+      NO_FILE_SELECTED: 'Dosya seçilmedi',
     },
   },
 

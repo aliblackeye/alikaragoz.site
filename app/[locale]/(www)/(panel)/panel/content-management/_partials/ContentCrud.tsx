@@ -18,6 +18,9 @@ import { TYPES } from '@configs/typesConfig';
 
 import { FILE_TYPES } from '@constants/file-types';
 import { BUTTON_SIZE } from '@constants/sizes';
+import { BUTTON_STATUS } from '@constants/status';
+
+import { createNotification } from '@utils/createNotification';
 
 import { Dialog } from '@components/ui/dialog';
 import { Button } from '@components/ui/form-elements/button';
@@ -122,11 +125,21 @@ export default function ContentCrud(props: IContentCrudProps) {
     if (work?.id) {
       updateContent.mutateAsync([formData, [work?.id]]).then(() => {
         fetchWorks.refetch();
+        createNotification({
+          title: 'Success!',
+          description: 'Work updated successfully.',
+          status: 'success',
+        });
         handleClose();
       });
     } else {
       createContent.mutateAsync(formData).then((res) => {
         handleClose();
+        createNotification({
+          title: 'Success!',
+          description: 'Work created successfully.',
+          status: 'success',
+        });
         fetchWorks.refetch();
       });
     }
@@ -139,6 +152,7 @@ export default function ContentCrud(props: IContentCrudProps) {
         width={1500}
         style={{ minHeight: '65%' }}
         onOpenChange={(open) => {
+          if (updateContent.isPending || createContent.isPending) return;
           setVisible(open);
 
           if (!open) {
@@ -225,8 +239,6 @@ export default function ContentCrud(props: IContentCrudProps) {
                       }
                       onChange={(e) => {
                         setSelectedFile(e.target.files[0]);
-
-                        console.log(e);
                         field.onChange(e);
                       }}
                       type="file"
@@ -265,12 +277,14 @@ export default function ContentCrud(props: IContentCrudProps) {
             <div className="mt-6 flex justify-end gap-2">
               <Button
                 size={BUTTON_SIZE.LG}
-                variant="outline"
-                label={`FORM_ELEMENTS.CTA.CLOSE`}
+                label={`FORM_ELEMENTS.CTA.CANCEL`}
+                disabled={createContent.isPending || updateContent.isPending}
+                status={BUTTON_STATUS.WHITE}
                 onClick={handleClose}
               />
               <Button
                 size={BUTTON_SIZE.LG}
+                loading={createContent.isPending || updateContent.isPending}
                 type="submit"
                 label={
                   work ? `FORM_ELEMENTS.CTA.SAVE` : `FORM_ELEMENTS.CTA.CREATE`

@@ -11,7 +11,7 @@ interface DividerProps extends HTMLAttributes<HTMLHRElement> {
   status?: STATUS;
 }
 
-const dividerVariants = cva('orbina-ui-divider border-none h-[1px]', {
+const dividerVariants = cva('shadcn-ui-divider border-none h-[1px]', {
   variants: {
     margin: {
       none: 'my-0',

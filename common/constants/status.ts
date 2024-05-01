@@ -35,7 +35,6 @@ export enum BUTTON_STATUS {
   BLACK = 'black',
   WHITE = 'white',
   GRAY = 'gray',
-  LINK = 'link',
   TEXT = 'text',
   LIGHT = 'light',
   TERTIARY = 'tertiary',

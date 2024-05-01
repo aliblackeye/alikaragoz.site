@@ -73,7 +73,6 @@ export const POST = async (req: NextRequest) => {
 
       fs.writeFile('./db/works.json', JSON.stringify(works), (err) => {
         if (err) {
-          console.log('REJECT:', err.message);
           return reject(err);
         }
 

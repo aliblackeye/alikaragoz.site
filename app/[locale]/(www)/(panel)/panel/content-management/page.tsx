@@ -19,11 +19,55 @@ import ContentCrud from './_partials/ContentCrud';
 
 import '@styles/_content-management.scss';
 
+import { ColumnDef } from '@tanstack/react-table';
+
 import { useFetcher } from '@hooks/use-fetcher';
 
 import { TYPES } from '@configs/typesConfig';
 
 import ICONS from '@constants/icons';
+import { BUTTON_STATUS, STATUS } from '@constants/status';
+
+import { DataTable } from '@components/ui/data-table';
+import { Dropdown } from '@components/ui/dropdown';
+
+export type Payment = {
+  id: string;
+  amount: number;
+  status: 'pending' | 'processing' | 'success' | 'failed';
+  email: string;
+};
+
+export const payments: Payment[] = [
+  {
+    id: '728ed52f',
+    amount: 100,
+    status: 'pending',
+    email: 'm@example.com',
+  },
+  {
+    id: '489e1d42',
+    amount: 125,
+    status: 'processing',
+    email: 'example@gmail.com',
+  },
+];
+
+const others: ColumnDef<Payment>[] = [
+  {
+    accessorKey: 'amount',
+    header: () => <div className="text-right">Amount</div>,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue('amount'));
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(amount);
+
+      return <div className="text-right font-medium">{formatted}</div>;
+    },
+  },
+];
 
 export default function ContentManagement() {
   // States
@@ -35,15 +79,14 @@ export default function ContentManagement() {
   const deleteFetcher = useFetcher(TYPES.DELETE_WORK).action();
   const worksFetcher = useFetcher(TYPES.GET_WORKS_LIST).render();
 
-  const columns = [
+  const columns: ColumnDef<any>[] = [
     {
-      dataIndex: 'image',
-      label: 'COMPONENTS.TABLE.COLUMNS.LABELS.COVER',
-      width: 70,
-      render: (value) => {
+      accessorKey: 'image',
+      header: 'COMPONENTS.TABLE.COLUMNS.LABELS.COVER',
+      cell: ({ row }) => {
         return (
           <Image
-            src={value}
+            src={row.getValue('image')}
             alt="cover"
             width={1920}
             height={1920}
@@ -53,39 +96,44 @@ export default function ContentManagement() {
       },
     },
     {
-      dataIndex: 'title',
-      label: 'COMPONENTS.TABLE.COLUMNS.LABELS.TITLE',
-      width: 100,
+      accessorKey: 'title',
+      header: 'COMPONENTS.TABLE.COLUMNS.LABELS.TITLE',
     },
     {
-      dataIndex: 'description',
-      label: 'COMPONENTS.TABLE.COLUMNS.LABELS.DESCRIPTION',
-      width: 600,
+      accessorKey: 'description',
+      header: 'COMPONENTS.TABLE.COLUMNS.LABELS.DESCRIPTION',
     },
     {
-      dataIndex: 'views',
-      label: 'COMPONENTS.TABLE.COLUMNS.LABELS.VIEWS',
-      width: 50,
-      render: (value) => (
-        <div className="flex items-center gap-1">
-          <span>{value}</span>
-          <BsEye className="work-views-icon" />
-        </div>
-      ),
+      accessorKey: 'views',
+      header: 'COMPONENTS.TABLE.COLUMNS.LABELS.VIEWS',
+      cell: ({ row }) => {
+        return (
+          <div className="flex items-center gap-1">
+            <span>{row.getValue('views')}</span>
+            <BsEye className="work-views-icon" />
+          </div>
+        );
+      },
     },
     {
-      dataIndex: 'actions',
-      label: 'COMPONENTS.TABLE.COLUMNS.LABELS.ACTIONS',
-      width: 50,
-      render: (_value, row, index) => {
+      header: 'COMPONENTS.TABLE.COLUMNS.LABELS.ACTIONS',
+      cell: ({ row }) => {
+        const original = row.original;
+
         return (
           <div className="flex gap-2">
             <Tooltip content="Read">
               <Button
-                variant="outline"
-                icon={{ iconType: ICONS.EYE }}
+                status={BUTTON_STATUS.TERTIARY}
+                icon={{
+                  iconType: ICONS.EYE,
+
+                  status: STATUS.PRIMARY,
+                }}
                 onClick={() => {
-                  window.open(window.location.origin + '/work/' + row.href);
+                  window.open(
+                    window.location.origin + '/work/' + original.href
+                  );
                 }}
               />
             </Tooltip>
@@ -94,9 +142,11 @@ export default function ContentManagement() {
               <Button
                 icon={{
                   iconType: ICONS.EDIT,
+                  status: STATUS.WHITE,
                 }}
+                status={BUTTON_STATUS.WARNING}
                 onClick={() => {
-                  setWork(row);
+                  setWork(original);
                   setVisible(true);
                 }}
               />
@@ -104,14 +154,16 @@ export default function ContentManagement() {
 
             <Tooltip content="Delete">
               <Popconfirm
-                label={'COMPONENTS.POPCONFIRM.DELETE'}
                 onConfirm={() => {
-                  deleteFetcher.mutateAsync([undefined, [row?.id]]).then(() => {
-                    worksFetcher.refetch();
-                  });
+                  deleteFetcher
+                    .mutateAsync([undefined, [original.id]])
+                    .then(() => {
+                      worksFetcher.refetch();
+                    });
                 }}
               >
                 <Button
+                  status={BUTTON_STATUS.DANGER}
                   icon={{
                     iconType: ICONS.DELETE,
                   }}
@@ -138,6 +190,8 @@ export default function ContentManagement() {
           data={works}
           columns={columns}
           refetch={worksFetcher.refetch}
+          loading={worksFetcher.isFetching}
+          dataUpdatedAt={worksFetcher.dataUpdatedAt}
           tableHeader={
             <>
               <Button

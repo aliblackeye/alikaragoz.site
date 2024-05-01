@@ -139,7 +139,7 @@ const Input = (props: InputProps) => {
                 : undefined
             }
             className={cn(
-              `shadcn-input general-transition flex h-10  w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${iconLeading ? 'px-1 py-2' : 'px-[14px] py-[10px]'} ring-offset-primary-300 overflow-hidden file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:text-gray-500`,
+              `shadcn-input general-transition w-full rounded-md bg-transparent ${iconLeading ? 'px-1 py-2' : 'px-[14px] py-[10px]'} overflow-hidden text-gray-900 ring-offset-primary-300 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-primary-100 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:text-gray-500`,
               `${type === 'color' && 'appearance:none h-full'}`,
               type === 'file' && 'hidden'
             )}
@@ -158,7 +158,7 @@ const Input = (props: InputProps) => {
                 <span className="flex-grow overflow-hidden">
                   {type === 'file' && value
                     ? value.split('\\').pop()
-                    : 'No file chosen.'}
+                    : t('FORM_ELEMENTS.PLACEHOLDERS.NO_FILE_SELECTED')}
                 </span>
               </div>
 
