@@ -96,7 +96,7 @@ export default function ContentCrud(props: IContentCrudProps) {
   });
 
   // States
-  const [file, setFile] = useState<File | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   // Fetchers
   const updateContent = useFetcher(TYPES.PUT_WORK_UPDATE).action();
@@ -106,7 +106,7 @@ export default function ContentCrud(props: IContentCrudProps) {
   const handleClose = () => {
     setWork(null);
     setVisible(false);
-    setFile(null);
+    setSelectedFile(null);
     form.reset();
   };
 
@@ -116,7 +116,7 @@ export default function ContentCrud(props: IContentCrudProps) {
     formData.append('description', values.description);
     formData.append('href', values.href);
     formData.append('content', values.content);
-    formData.append('image', file || values.image);
+    formData.append('image', selectedFile || values.image);
     formData.append('category', values.category);
 
     if (work?.id) {
@@ -216,26 +216,15 @@ export default function ContentCrud(props: IContentCrudProps) {
                       {...field}
                       label={`FORM_ELEMENTS.LABELS.IMAGE`}
                       placeholder={`FORM_ELEMENTS.PLACEHOLDERS.SELECT_IMAGE`}
-                      value={(() => {
-                        console.log('work?.id', work?.id);
-                        console.log('file?.name', file?.name);
-                        console.log('field?.value', field?.value);
-                        console.log(
-                          'değer:',
-                          work?.id && file?.name
-                            ? file
-                            : field.value.startsWith('/')
-                              ? ''
-                              : field.value
-                        );
-                        return work?.id && file?.name
-                          ? field.value
-                          : field.value.startsWith('/')
+                      value={
+                        !work?.id || selectedFile
+                          ? field?.value
+                          : field?.value?.startsWith('/')
                             ? ''
-                            : field.value;
-                      })()}
+                            : ''
+                      }
                       onChange={(e) => {
-                        setFile(e.target.files[0]);
+                        setSelectedFile(e.target.files[0]);
 
                         console.log(e);
                         field.onChange(e);

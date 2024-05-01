@@ -71,17 +71,14 @@ export const POST = async (req: NextRequest) => {
     await new Promise<void>((resolve, reject) => {
       works.push(newWork as any);
 
-      fs.writeFile(
-        '../../../../db/works.json',
-        JSON.stringify(works),
-        (err) => {
-          if (err) {
-            return reject(err);
-          }
-
-          resolve();
+      fs.writeFile('./db/works.json', JSON.stringify(works), (err) => {
+        if (err) {
+          console.log('REJECT:', err.message);
+          return reject(err);
         }
-      );
+
+        resolve();
+      });
     });
 
     return NextResponse.json(
