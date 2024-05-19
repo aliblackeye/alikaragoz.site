@@ -24,8 +24,6 @@ export default function WorkItem(props: IWorkItemProps) {
   // Params
   const pathname = usePathname();
 
-  console.log(project);
-
   return (
     <motion.div
       className="work-item gradient-hover"
