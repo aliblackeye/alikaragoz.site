@@ -1,12 +1,10 @@
 'use server';
 
-import fs from 'fs';
+import data from '@db/works.json';
 
 export async function getWorks() {
-  const data = fs.readFileSync('./db/works.json', 'utf8');
-
   // category fieldları aynı olanları birleştir
-  const works = JSON.parse(data).reduce((acc, item) => {
+  const works = data.reduce((acc, item) => {
     const existing = acc.find((work) => work.category === item.category);
     if (existing) {
       existing.items.push(item);

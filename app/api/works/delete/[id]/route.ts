@@ -2,7 +2,7 @@ import fs from 'fs';
 
 import { NextRequest, NextResponse } from 'next/server';
 
-import works from '../../../../../db/works.json';
+import works from '@db/works.json';
 
 export const DELETE = async (
   req: NextRequest,

@@ -3,9 +3,8 @@ import fs from 'fs';
 // writeFile işlemini promisify ediyoruz
 import { NextRequest, NextResponse } from 'next/server';
 
+import works from '@db/works.json';
 import { v4 as uuidv4 } from 'uuid';
-
-import works from '../../../../db/works.json';
 
 export const POST = async (req: NextRequest) => {
   try {
