@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 import axios from 'axios';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { FiEdit, FiSave, FiShare2, FiTrash2 } from 'react-icons/fi';
+import { FiEdit, FiSave, FiTrash2 } from 'react-icons/fi';
 import {
   HiOutlineClipboard,
   HiOutlineClipboardCheck,
@@ -70,44 +70,6 @@ export default function Work(props: IWorkProps) {
           title={work?.title || '...'}
           description={work?.description || '...'}
         />
-
-        <div className="work-page-actions">
-          <button
-            className="edit"
-            onClick={() => {
-              setIsEditMode(!isEditMode);
-            }}
-          >
-            {isEditMode ? <FiSave /> : <FiEdit />}
-          </button>
-
-          <button
-            disabled={isEditMode}
-            className="delete"
-            onClick={() => {
-              prompt('Copy the link to delete', window.location.href);
-            }}
-          >
-            <FiTrash2 />
-          </button>
-          <CopyToClipboard
-            text={(() => {
-              if (typeof window !== 'undefined') {
-                return window.location.href;
-              }
-            })()}
-            onCopy={() => {
-              setIsShared(true);
-              setTimeout(() => {
-                setIsShared(false);
-              }, 1000);
-            }}
-          >
-            <button disabled={isEditMode} className="share">
-              {isShared ? <HiShare /> : <HiOutlineShare />}
-            </button>
-          </CopyToClipboard>
-        </div>
 
         {isEditMode && (
           <textarea

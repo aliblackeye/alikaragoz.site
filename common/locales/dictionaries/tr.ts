@@ -23,8 +23,15 @@ export default {
     },
     WORKS: {
       TITLES: {
-        MID_WORKS: 'Mid Çalışmalar',
-        JUNIOR_WORKS: 'Junior Çalışmalar',
+        ALL: 'Tümü',
+        WORKS: 'Çalışmaları',
+        COMPANY: 'Şirket',
+        PERSONAL: 'Kişisel',
+        FREELANCE: 'Freelance',
+        SENIOR: 'Senior',
+        LEAD: 'Lead',
+        MID: 'Mid',
+        JUNIOR: 'Junior',
       },
       SEE_ALL: 'Hepsini Gör',
     },

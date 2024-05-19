@@ -1,11 +1,12 @@
 'use client';
 
 // Libs
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { socials } from '@db/user-details.json';
 import { useChangeLocale, useCurrentLocale, useI18n } from '@locales/client';
 import {
   AiOutlineClose,
@@ -21,31 +22,33 @@ import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 // Components
 import Container from '@components/container';
 
-import { socials } from '../../../../db/user-details.json';
 // Styles
 import './styles.scss';
 
 import { useTheme } from 'next-themes';
 
-const links = [
-  {
-    href: '/',
-    label: 'home',
-  },
-  {
-    href: '/works/all',
-    label: 'works',
-  },
-
-  {
-    href: '/about',
-    label: 'about',
-  },
-];
-
 export default function Header() {
   // Theme
   const { theme, setTheme } = useTheme();
+
+  // Variables
+  const links = useMemo(() => {
+    return [
+      {
+        href: '/',
+        label: 'home',
+      },
+      {
+        href: '/works/all',
+        label: 'works',
+      },
+
+      {
+        href: '/about',
+        label: 'about',
+      },
+    ];
+  }, []);
 
   // Locales
   const locale = useCurrentLocale();

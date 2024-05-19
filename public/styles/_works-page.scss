@@ -1,18 +1,15 @@
 .works-page {
-
   &-actions {
-    
   }
 
-  .levels {
+  .categories {
     justify-content: center;
     align-items: center;
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
 
-    .level {
-      max-width: 80px;
+    .category {
       padding: 8px 8px;
 
       width: 100%;

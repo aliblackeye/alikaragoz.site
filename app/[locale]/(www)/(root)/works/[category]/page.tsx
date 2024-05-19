@@ -1,23 +1,24 @@
 'use client';
 
 // Libs
+import { useMemo } from 'react';
+
 import Link from 'next/link';
 
 import { useI18n } from '@locales/client';
 import { motion } from 'framer-motion';
 
 import Container from '@components/container';
-// Components
 import PageInfo from '@components/page-info';
-import WorkItem from '@components/work-item';
-
-// Data
-import { juniorProjects, midProjects } from '../../../../../../data';
 
 import '@styles/_works-page.scss';
 
+import data from '@db/works.json';
+
+import WorkItem from '@components/work-item';
+
 interface IWorkPageProps {
-  params: { level: string };
+  params: { category: string };
 }
 
 export default function WorkPage(props: IWorkPageProps) {
@@ -25,10 +26,24 @@ export default function WorkPage(props: IWorkPageProps) {
   const { params } = props;
 
   // Destructuring params
-  const { level } = params;
+  const { category } = params;
 
   // Locale
   const t = useI18n() as any;
+
+  // Variables
+  const categories = useMemo(() => {
+    return [
+      'all',
+      ...data.reduce((acc, item) => {
+        if (!acc.includes(item.category)) {
+          acc.push(item.category.toLowerCase());
+        }
+
+        return acc;
+      }, []),
+    ];
+  }, []);
 
   return (
     <motion.div
@@ -42,25 +57,16 @@ export default function WorkPage(props: IWorkPageProps) {
           description={t(`PAGE_CONTENTS.WORKS.DESCRIPTION`)}
         />
 
-        <div className="levels">
-          <Link
-            href={'/works/all'}
-            className={`level ${level === 'all' ? 'active' : ''}`}
-          >
-            All
-          </Link>
-          <Link
-            href={'/works/mid'}
-            className={`level ${level === 'mid' ? 'active' : ''}`}
-          >
-            Mid
-          </Link>
-          <Link
-            href={'/works/junior'}
-            className={`level ${level === 'junior' ? 'active' : ''}`}
-          >
-            Junior
-          </Link>
+        <div className="categories">
+          {categories?.map((categoryName, index) => (
+            <Link
+              key={index}
+              href={'/works/' + categoryName}
+              className={`category ${category === categoryName ? 'active' : ''}`}
+            >
+              {t(`COMPONENTS.WORKS.TITLES.${categoryName.toUpperCase()}`)}
+            </Link>
+          ))}
         </div>
 
         <motion.div
@@ -79,16 +85,9 @@ export default function WorkPage(props: IWorkPageProps) {
           animate="visible"
           className="works-list"
         >
-          {level === 'junior' &&
-            juniorProjects.map((project, index) => (
-              <WorkItem key={index} project={project} />
-            ))}
-          {level === 'mid' &&
-            midProjects.map((project, index) => (
-              <WorkItem key={index} project={project} />
-            ))}
-          {level === 'all' &&
-            [...midProjects, ...juniorProjects].map((project, index) => (
+          {data
+            ?.filter((item) => item.category.toLowerCase() === category)
+            .map((project, index) => (
               <WorkItem key={index} project={project} />
             ))}
         </motion.div>

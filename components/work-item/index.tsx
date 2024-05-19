@@ -1,13 +1,15 @@
-"use client";
+'use client';
 
 // Libs
-import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { motion } from 'framer-motion';
 
 // Styles
-import "@styles/_work-item.scss";
-import { usePathname } from "next/navigation";
+import '@styles/_work-item.scss';
+
+import { usePathname } from 'next/navigation';
 
 // Interfaces
 interface IWorkItemProps {
@@ -22,6 +24,8 @@ export default function WorkItem(props: IWorkItemProps) {
   // Params
   const pathname = usePathname();
 
+  console.log(project);
+
   return (
     <motion.div
       className="work-item gradient-hover"
@@ -32,13 +36,15 @@ export default function WorkItem(props: IWorkItemProps) {
           opacity: 1,
         },
       }}
-      initial={useAnimation ? "hidden" : undefined}
-      animate={useAnimation ? "visible" : undefined}
+      initial={useAnimation ? 'hidden' : undefined}
+      animate={useAnimation ? 'visible' : undefined}
     >
-      <Link href={`${pathname.includes("works") ? "/work/" : "work/"}${project.href}`}>
+      <Link
+        href={`${pathname.includes('works') ? '/work/' : 'work/'}${project.href}`}
+      >
         <div className="image">
           <Image
-            src={`/images/${project?.image}`}
+            src={`${project?.image}`}
             alt="work"
             width={1920}
             height={1080}

@@ -3,7 +3,6 @@ import { getI18n } from '@locales/server';
 import type { Metadata } from 'next';
 
 // Layouts
-import { Providers } from '@layouts/providers';
 import ClientRootLayout from '@layouts/root-layout';
 
 export async function generateMetadata(): Promise<Metadata> {

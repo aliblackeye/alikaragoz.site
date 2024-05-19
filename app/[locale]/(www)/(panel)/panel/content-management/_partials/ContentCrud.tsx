@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UseQueryResult } from '@tanstack/react-query';
@@ -63,21 +63,19 @@ const formSchema = z.object({
   // file tipinde veya url olabilir
   image: z.any(),
   content: z.string({ message: 'This field is required!' }).min(3),
-  category: z.string().refine(
-    (value) => {
-      return ['Junior', 'Mid', 'Lead', 'Senior'].includes(value);
-    },
-    { message: 'This field is required!' }
-  ),
+  category: z.string(),
 });
 
 const categories = [
   {
     options: [
-      { label: 'Junior', value: 'Junior' },
-      { label: 'Mid', value: 'Mid' },
-      { label: 'Lead', value: 'Lead' },
+      { label: 'Company', value: 'Company' },
+      { label: 'Freelance', value: 'Freelance' },
+      { label: 'Personal', value: 'Personal' },
       { label: 'Senior', value: 'Senior' },
+      { label: 'Lead', value: 'Lead' },
+      { label: 'Mid', value: 'Mid' },
+      { label: 'Junior', value: 'Junior' },
     ],
   },
 ];

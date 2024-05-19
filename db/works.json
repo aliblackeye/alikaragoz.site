@@ -1,22 +1,22 @@
 [
   {
-    "id": "1",
-    "href": "fakeforme",
-    "title": "Fake For Me",
-    "description": "JsonGPT supported fake data generator",
-    "image": "https://avatars.githubusercontent.com/u/80913896?v=4",
-    "content": "> A block quote with ~strikethrough~ and a URL: https://reactjs.org.\n\n# Alikay\n\n* [ ] todo\n* [x] done\n\nA table: \n\n| a | b |\n| - | - |\n\nHere is some JavaScript code:\n\n```javascript\nlet alikay = 1;\n\nconsole.log(\"value:\", alikay);\n```\n\nExample react component code:\n\n```js\nimport React from \"react\";\n\nexport default function FakeForMe() {\n    return <h1>Fake For Me</h1>\n}\n\n```",
-    "category": "Lead",
+    "id": "ac409d37-1b95-48cb-b73b-d9eb7c852cbd",
+    "href": "chat-ai",
+    "title": "Chat AI - Dashboard",
+    "description": "Chat AI and dashboard project with Next.js",
+    "image": "/upload/bea3f9bf-9920-4a2c-b035-bd26bea7f9f1.png",
+    "category": "Company",
+    "content": "Content",
     "views": 0
   },
   {
-    "id": "5eace567-71a0-4d00-8c33-249ff717121b",
-    "href": "dsggdssdsdgsdgsdggsd",
-    "title": "sdggdsgds",
-    "description": "gsdgsdgdsdsggsd",
-    "image": "/upload/a929f1eb-0793-4864-ac1a-65573e961991.png",
-    "category": "Lead",
-    "content": "sdggdsgsdgsddgs",
+    "id": "e39e4351-ed1c-4904-a43e-3cadd15ee131",
+    "href": "fakeforme",
+    "title": "FakeForMe",
+    "description": "JsonGPT supported fake data generator",
+    "image": "/upload/bc3ffe96-7944-4b36-9e0a-3a1aa0b61f4c.png",
+    "category": "Personal",
+    "content": "Content",
     "views": 0
   }
 ]

@@ -23,8 +23,15 @@ export default {
     },
     WORKS: {
       TITLES: {
-        MID_WORKS: 'Mid Works',
-        JUNIOR_WORKS: 'Junior Works',
+        ALL: 'All',
+        WORKS: 'Works',
+        COMPANY: 'Company',
+        PERSONAL: 'Personal',
+        FREELANCE: 'Freelance',
+        SENIOR: 'Senior',
+        LEAD: 'Lead',
+        MID: 'Mid',
+        JUNIOR: 'Junior',
       },
       SEE_ALL: 'See All',
     },
