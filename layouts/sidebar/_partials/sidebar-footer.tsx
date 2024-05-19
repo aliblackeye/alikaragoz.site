@@ -142,7 +142,8 @@ export default function SidebarFooter() {
               className="absolute -right-8 -top-2"
               loading={false}
               onClick={() => {
-                localStorage.removeItem('token');
+                sessionStorage.removeItem('username');
+                sessionStorage.removeItem('password');
                 router.push('/api/auth/logout');
               }}
             />

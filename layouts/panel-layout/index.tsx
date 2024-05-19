@@ -22,23 +22,33 @@ export default function PanelLayout(props: IPanelLayoutProps) {
   const router = useRouter();
 
   // States
-  const [token, setToken] = useState(null);
+  const [logged, setLogged] = useState(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   // Effects
   useEffect(() => {
     // Token işlemleri
-    const tokenFromStorage = localStorage.getItem('token');
-    setToken(tokenFromStorage);
+    const username = sessionStorage.getItem('username');
+    const password = sessionStorage.getItem('password');
 
-    if (!tokenFromStorage && pathname !== '/panel-login') {
+    if (
+      username === process.env.NEXT_PUBLIC_USERNAME &&
+      password === process.env.NEXT_PUBLIC_PASSWORD
+    ) {
+      setLogged(true);
+
+      if (pathname === '/panel-login') {
+        router.push('/panel/dashboard');
+      }
+    } else if (
+      username !== process.env.NEXT_PUBLIC_USERNAME &&
+      password !== process.env.NEXT_PUBLIC_PASSWORD
+    ) {
       router.push('/panel-login');
-    } else if (tokenFromStorage && pathname === '/panel-login') {
-      router.push('/panel/dashboard');
     }
   }, [pathname, router]);
 
-  if (!token) {
+  if (!logged) {
     return <>{children}</>;
   }
 

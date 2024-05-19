@@ -1,13 +1,10 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 
-import { AiOutlineDelete } from 'react-icons/ai';
-import { BiPlus } from 'react-icons/bi';
 import { BsEye } from 'react-icons/bs';
-import { FiEdit } from 'react-icons/fi';
 
 import { Box } from '@components/box';
 import { Button } from '@components/ui/form-elements/button';
@@ -27,9 +24,6 @@ import { TYPES } from '@configs/typesConfig';
 
 import ICONS from '@constants/icons';
 import { BUTTON_STATUS, STATUS } from '@constants/status';
-
-import { DataTable } from '@components/ui/data-table';
-import { Dropdown } from '@components/ui/dropdown';
 
 export type Payment = {
   id: string;

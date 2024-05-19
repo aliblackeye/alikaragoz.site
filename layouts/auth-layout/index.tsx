@@ -20,12 +20,21 @@ export default function PanelLayout(props: IPanelLayoutProps) {
   // Effects
   useEffect(() => {
     // Token işlemleri
-    const tokenFromStorage = localStorage.getItem('token');
+    const username = sessionStorage.getItem('username');
+    const password = sessionStorage.getItem('password');
 
-    if (!tokenFromStorage && pathname !== '/panel-login') {
+    if (
+      username === process.env.NEXT_PUBLIC_USERNAME &&
+      password === process.env.NEXT_PUBLIC_PASSWORD
+    ) {
+      if (pathname === '/panel-login') {
+        router.push('/panel/dashboard');
+      }
+    } else if (
+      username !== process.env.NEXT_PUBLIC_USERNAME &&
+      password !== process.env.NEXT_PUBLIC_PASSWORD
+    ) {
       router.push('/panel-login');
-    } else if (tokenFromStorage && pathname === '/panel-login') {
-      router.push('/panel/dashboard');
     }
   }, [pathname, router]);
 

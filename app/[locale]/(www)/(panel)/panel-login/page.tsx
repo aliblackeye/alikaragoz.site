@@ -14,6 +14,7 @@ export default function PanelLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  // Functions
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -27,10 +28,14 @@ export default function PanelLogin() {
         console.log(data);
       }); */
 
-    let token = '1234567890';
-    localStorage
-      ? localStorage.setItem('token', token)
-      : console.log('Local storage is not supported');
+    if (
+      process.env.NEXT_PUBLIC_USERNAME !== username ||
+      process.env.NEXT_PUBLIC_PASSWORD !== password
+    )
+      return;
+
+    sessionStorage.setItem('username', username);
+    sessionStorage.setItem('password', password);
 
     // Redirect to the panel
     router.push('/panel/dashboard');
