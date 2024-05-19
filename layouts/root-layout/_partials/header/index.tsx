@@ -6,7 +6,7 @@ import { useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { socials } from '@db/user-details.json';
+import data from '@db/user-details.json';
 import { useChangeLocale, useCurrentLocale, useI18n } from '@locales/client';
 import {
   AiOutlineClose,
@@ -115,7 +115,7 @@ export default function Header() {
               )}
             </div>
             <div className="socials">
-              {socials.map((social, index) => (
+              {data?.socials.map((social, index) => (
                 <Link href={social.href} key={index} target="_blank">
                   {social.label === 'instagram' && (
                     <AiOutlineInstagram size={18} />
