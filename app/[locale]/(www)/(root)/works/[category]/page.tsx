@@ -85,11 +85,12 @@ export default function WorkPage(props: IWorkPageProps) {
           animate="visible"
           className="works-list"
         >
-          {data
-            ?.filter((item) => item.category.toLowerCase() === category)
-            .map((project, index) => (
-              <WorkItem key={index} project={project} />
-            ))}
+          {(category === 'all'
+            ? data
+            : data?.filter((item) => item.category.toLowerCase() === category)
+          ).map((project, index) => (
+            <WorkItem key={index} project={project} />
+          ))}
         </motion.div>
       </Container>
     </motion.div>

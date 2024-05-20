@@ -18,7 +18,7 @@ export async function WorkList() {
               key={index}
               title={`${work.category === 'Personal' || work.category === 'Company' ? `${t(`COMPONENTS.WORKS.TITLES.${work.category.toUpperCase()}`)}` : work.category.toUpperCase()} ${t(`COMPONENTS.WORKS.TITLES.WORKS`)}`}
               workItems={work.items}
-              href={`/works/${work.href}`}
+              href={`/works/${work.category.toLowerCase()}`}
             />
           );
         })}
